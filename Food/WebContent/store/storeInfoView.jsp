@@ -308,7 +308,7 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 		else{
 			location.href="<%=request.getContextPath()%>/evalInputView.ev?storeid="+store_id;
 		}
-	
+	   
 	}
 	function goEvalDel(edel) {
 		
