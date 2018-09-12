@@ -119,7 +119,7 @@ public class storeDAO {
 			page = Integer.parseInt(pageNum);
 		} 
 
-		int countPage = 10;
+		int countPage = 5;
 
 		int query_startPage = (page - 1) * countPage + 1; 
 		int query_endPage = page * countPage; 
@@ -148,6 +148,7 @@ public class storeDAO {
 				dto = new storeDTO();
 				dto.setCount(rs2.getString("count"));
 				dto.setStoreid(rs2.getString("storeid"));
+				dto.setId(id);
 				dto.setStorename(rs2.getString("storename"));
 				dto.setPermit(rs2.getString("permit"));
 
@@ -168,7 +169,7 @@ public class storeDAO {
 
 	}
 	
-	//List의 총 column 개수
+	//applyList의 총 개수
 	public String CountList() {
 		
 		String cnt = null;
@@ -199,7 +200,44 @@ public class storeDAO {
 		return cnt;
 		
 	}
+	
+	//manageStoreList의 총 개수
+		public String mCountList(String id) {
 
+			String cnt = null;
+
+			storeDTO dto = null;
+
+			try {
+
+				conn = dataSource.getConnection();
+				
+				String sql = "select count(*) as cnt from store where id=?";
+
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				
+				rs = pstmt.executeQuery();
+
+				rs.next();
+							
+				cnt=rs.getString("cnt");
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					if(rs != null) rs.close();
+					if(pstmt != null) pstmt.close();
+					if(conn != null) conn.close();
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+			return cnt;
+
+		}
+	
 	//매장등록 신청하기(점주)
 	public String applyStore(storeDTO dto) {
 		
@@ -310,6 +348,7 @@ public class storeDAO {
 		}
 		return check;
 	}
+	
 	//매장정보 업데이트시 보여주는 창(기본 정보)
 	public storeDTO updateStoreView(String storeid) {
 		
@@ -357,6 +396,7 @@ public class storeDAO {
 		
 		return dto;
 	}
+	
 	//매장정보 업데이트시 보여주는 창(기타 정보)
 	public regStoreDTO updateStoreView2(String rsstoreid) {
 
@@ -381,6 +421,7 @@ public class storeDAO {
 				dto1.setFilename3(rs.getString("filename3"));
 				dto1.setFilename4(rs.getString("filename4"));
 				dto1.setFilename5(rs.getString("filename5"));
+				dto1.setImg_path(rs.getString("img_path"));
 			}
 
 		} catch (SQLException e) {
@@ -445,6 +486,7 @@ public class storeDAO {
 		}
 		return check;
 	}
+	
 	//매장 등록or수정2-(기타 정보)
 	public String updateStore2(storeDTO dto, regStoreDTO dto1) {
 
@@ -503,8 +545,7 @@ public class storeDAO {
 		return check2;
 	}
 	
-	
-	//////////////////////////////evaluate////////////////
+	//////////////////////////////evaluate//////////////////////////////
 	//evalInputViewCommand에서 사용함	
 	public storeDTO evalStoreView(String storeid) {
 			
@@ -550,7 +591,44 @@ public class storeDAO {
 			return dto;
 		}
 		
+/*---------------------searchView----------------------------------------------------------*/
+	public storeDTO storeSearchView(String storeid) {
+		storeDTO dto = null;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "select * from store";
+			
+			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
 	
-	
-	
+		return dto;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
+

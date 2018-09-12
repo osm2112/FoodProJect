@@ -9,6 +9,7 @@ public class regStoreDTO {
 	String filename4;
 	String filename5;
 	String img_path;
+	String like_count;
 	
 	public String getRsstoreid() {
 		return rsstoreid;
@@ -58,5 +59,11 @@ public class regStoreDTO {
 	public void setImg_path(String img_path) {
 		this.img_path = img_path;
 	}
-		
+	public String getLike_count() {
+		return like_count;
+	}
+	public void setLike_count(String like_count) {
+		this.like_count = like_count;
+	}
+			
 }

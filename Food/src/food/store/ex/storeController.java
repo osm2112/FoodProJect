@@ -19,6 +19,7 @@ import food.store.command.storeCommand;
 import food.store.command.updateStoreCommand;
 import food.store.command.updateStoreViewCommand;
 import food.store.command.storeInfoViewCommand;
+import food.store.command.storeSearchViewCommand;
 
 /**
  * Servlet implementation class storeController
@@ -86,6 +87,10 @@ public class storeController extends HttpServlet {
 			command = new storeInfoViewCommand();
 			command.execute(request, response);
 			viewPage = "/store/storeInfoView.jsp";
+		} else if(com.equals("/storeSearchView.sto")) {
+			command = new storeSearchViewCommand();
+			command.execute(request, response);
+			viewPage = "/store/storeSearchView.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

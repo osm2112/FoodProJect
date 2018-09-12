@@ -3,25 +3,37 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="food.store.ex.storeDAO"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
+
+<!-- 
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+-->
+<!-- 
+<link rel="stylesheet" href="/Food/MDB_bootstrap/css/bootstrap.css">
+-->
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>매장등록 신청 목록</title>
+
 <style>
 .centered {
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
-	width: 1000px;
+	width: 1200px;
 }
 
 .textcenter {
 	text-align: center;
 }
 </style>
+
 	<script>
 			$(document).ready(function() {
 				
@@ -103,7 +115,9 @@
 	String pageNum = (String)request.getParameter("pageNum");
  	String content = (String)request.getAttribute("content");
 	System.out.println("pageNum : "+pageNum);
+	
 	int pageNo;
+	
 	if (pageNum == null) {
 		pageNo = 1;
 	} else {
@@ -111,8 +125,8 @@
 	}
 	
 	storeDAO dao = new storeDAO();
-	String tc = (String) request.getAttribute("totalCount");
-	String check = (String) request.getAttribute("check");
+	String tc = (String)request.getAttribute("totalCount");
+	String check = (String)request.getAttribute("check");
 	
 	int TotalCount = 0;
 	if (tc != null) {
@@ -143,8 +157,9 @@
 		<h3>매장 등록 신청 목록</h3>
 		<br>
 		
-		<table cellpadding="0" cellspacing="0" border="1">
-			<tr style="text-align: center;">
+		<table class="table table-hover">
+		<thead>
+			<tr>
 				<th>NO</th>
 				<th>STORE ID</th>
 				<th>ID</th>
@@ -157,7 +172,9 @@
 				<th>매장 전화번호</th>
 				<th>승인/거부</th>
 			</tr>
+		</thead>	
 			<c:forEach items="${applyList}" var="dto">
+				<tbody>
 				<tr>
 					<td><%=No%></td>
 					<td>${dto.storeid}</td>
@@ -170,14 +187,15 @@
 					<td>${dto.storeaddrdetail}</td>
 					<td>${dto.storetel}</td>
 					<td id="permit${dto.count}">
-						<input type="button" id="btn${dto.count}p" value="승인">
-						<input type="button" id="btn${dto.count}r" value="거부">
+						<input type="button" class="btn btn-secondary btn-sm" id="btn${dto.count}p" value="승인">
+						<input type="button" class="btn btn-secondary btn-sm" id="btn${dto.count}r" value="거부">
 						<input type="hidden" value="${dto.count}">
 						<span id="p${dto.count}">${dto.permit}</span></td>
 					<%
 						No = No - 1;
 					%>
 				</tr>
+				</tbody>
 			</c:forEach>
 			
 		</table>
@@ -185,9 +203,41 @@
 		<%
 			if (content == null) {
 		%>
-		<div>
-			<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
+		<div class="centered">
+			<div class="textcenter">
+			<nav aria-label="pagination example">
+			<ul class="pagination pagination-lg">
+			<!--Arrow left-->
+        		<li class="page-item">
+            		<a class="page-link" href="/Food/applyList.sto?pageNum=<%=pre%>" aria-label="Previous">
+                		<span aria-hidden="true">&laquo;</span>
+                		<span class="sr-only">Previous</span>
+            		</a>
+        		</li>
+			<%
+				for (int i = 1; i <= pageCount; i++) {
+			%>	
+			<!--Numbers-->
+				<li class="page-item">
+					<a class="page-link" href="/Food/applyList.sto?pageNum=<%=i%>"><%=i%></a>
+				</li>
+			<% } %>
+			<!--Arrow right-->
+        		<li class="page-item">
+            		<a class="page-link" href="/Food/applyList.sto?pageNum=<%=next%>" aria-label="Next">
+                		<span aria-hidden="true">&raquo;</span>
+                		<span class="sr-only">Next</span>
+            		</a>
+        		</li>
+    		</ul>
+			</nav>
+			</div>
+		</div>	
+		<%
+			}
+		%>	
+		
+			<%-- 
 				<li class="page-item"><a class="page-link"
 					href="/Food/applyList.sto?pageNum=<%=pre%>">◀</a></li>
 				<%
@@ -203,10 +253,7 @@
 					href="/Food/applyList.sto?pageNum=<%=next%>">▶</a></li>
 			</ul>
 			</nav>
-		</div>
-		<%
-			}
-		%>
+		 --%>
 
 	</div>
 	<jsp:include page="../footer.html"></jsp:include>

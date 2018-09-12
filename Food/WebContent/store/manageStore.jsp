@@ -3,13 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="food.store.ex.storeDAO"%>
 <%@ page import="food.store.ex.storeDTO"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>매장 관리</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <style>
 .centered {
 	display: table;
@@ -18,6 +17,7 @@
 	width: 1000px;
 }
 </style>
+
 <script>
 $(document).ready(function() {
 
@@ -45,23 +45,16 @@ $(document).ready(function() {
         }
     }
 
-    $("input").click(function(){
-        var storeid = $(this).parent().attr("class");
-        console.log(storeid);
-        
-        var check = $(this).attr("id");
-        
-        if(check == 'view'){
-        	
-        	location.href="<%=request.getContextPath()%>/storeInfoView.sto?storeid="+storeid;
-        }
-        else {
-        location.href="<%=request.getContextPath()%>/updateStoreView.sto?id="+storeid;
-        }
-    })
+$("input").click(function(){
+    var storeid = $(this).parent().attr("class");
+    console.log(storeid);
+    location.href="<%=request.getContextPath()%>/updateStoreView.sto?id="+storeid;
+})
+    
 });
 
 </script>
+ 
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -90,7 +83,7 @@ $(document).ready(function() {
 			TotalCount = Integer.parseInt(tc);
 		}
 		System.out.println("TotalCount : " + TotalCount);
-		int No = TotalCount - (pageNo - 1) * 10;
+		int No = TotalCount - (pageNo - 1) * 5;
 
 		int pageCount, pre, next;
 
@@ -99,10 +92,10 @@ $(document).ready(function() {
 		else
 			pre = pageNo;
 
-		if (TotalCount != pageNo * 10)
-			pageCount = TotalCount / 10 + 1;
+		if (TotalCount != pageNo * 5)
+			pageCount = TotalCount / 5 + 1;
 		else
-			pageCount = TotalCount / 10;
+			pageCount = TotalCount / 5;
 
 		if ((pageNo + 1) <= pageCount)
 			next = pageNo + 1;
@@ -110,23 +103,26 @@ $(document).ready(function() {
 			next = pageCount;
 	%>
 	<%
-		String id = (String) session.getAttribute("id");
-		String permit = (String) request.getAttribute("permit");
+		String id = (String)session.getAttribute("id");
+		String permit = (String)request.getAttribute("permit");
 		String storeid = (String)request.getAttribute("storeid");
 	%>
 
 	<div class="centered">
 		<h3>매장 관리</h3>
 		<br>
-		<table cellpadding="0" cellspacing="0" border="1">
+		<table class="table table-hover">
+		<thead>
 			<tr>
 				<th>NO</th>
-				<th>storeidE ID</th>
+				<th>STORE ID</th>
 				<th>상호명</th>
 				<th>상태</th>
 				<th>관리</th>
 			</tr>
+		</thead>	
 			<c:forEach items="${storeList}" var="dto">
+				<tbody>
 				<tr>
 					<td><%=No%></td>
 					<td>${dto.storeid}</td>
@@ -135,12 +131,12 @@ $(document).ready(function() {
 						${dto.permit}
 					</td>
 					<td id="${dto.permit}" class="${dto.storeid}">
-						<input type="button" id="${dto.count}" value="수정" />
-						<input type="button" id="view" value="VIEW" />
+						<input type="button" class="btn btn-secondary btn-sm" id="${dto.count}" value="수정" />
 						<span id="${dto.count}n"></span>
 					</td>
 					<% No = No - 1; %>
 				</tr>
+				</tbody>
 			</c:forEach>
 		</table>
 
@@ -148,23 +144,31 @@ $(document).ready(function() {
 			if (content == null) {
 		%>
 		<div>
-			<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<li class="page-item"><a class="page-link"
-					href="/Food/manageStore.jsp?pageNum=<%=pre%>">◀</a></li>
+		<div style="text-align: center;">
+			<nav aria-label="pagination example">
+			<ul class="pagination pagination-lg">
+				<li class="page-item">
+					<a class="page-link" href="/Food/manageStore.sto?id=<%=id%>&pageNum=<%=pre%>">
+						<span aria-hidden="true">&laquo;</span>
+                		<span class="sr-only">Previous</span>
+					</a>
+				</li>
 				<%
 					for (int i = 1; i <= pageCount; i++) {
 				%>
-				<li class="page-item"><a class="page-link"
-					href="/Food/manageStore.jsp?pageNum=<%=i%>">&nbsp;<%=i%>&nbsp;
-				</a></li>
-				<%
-					}
-				%>
-				<li class="page-item"><a class="page-link"
-					href="/Food/manageStore.jsp?pageNum=<%=next%>">▶</a></li>
+				<li class="page-item">
+					<a class="page-link" href="/Food/manageStore.sto?id=<%=id%>&pageNum=<%=i%>"><%=i%></a>
+				</li>
+				<%}%>
+				<li class="page-item">
+					<a class="page-link" href="/Food/manageStore.sto?id=<%=id%>&pageNum=<%=next%>">
+					<span aria-hidden="true">&raquo;</span>
+                	<span class="sr-only">Next</span>
+					</a>
+				</li>
 			</ul>
 			</nav>
+		</div>	
 		</div>
 		<%
 			}
