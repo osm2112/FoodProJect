@@ -5,6 +5,6 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>Food</display-name>
 	<welcome-file-list>
-		<welcome-file>main.mb</welcome-file>
+		<welcome-file>main.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
