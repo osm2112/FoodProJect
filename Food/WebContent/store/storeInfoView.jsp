@@ -59,7 +59,7 @@ hr {
         text-align: center;
 }
  
-@media screen and (min-width: 768px) { 
+@media screen and (min-width: 850px) { 
         .modal:before {
                 display: inline-block;
                 vertical-align: middle;
@@ -70,20 +70,24 @@ hr {
  
 .modal-dialog {
         display: inline-block;
-        text-align: left;
+        text-align:left;
         vertical-align: middle;
 }
  .modal-dialog.modal-size{
 	 
-	width:100%;
-  	margin: 0;
+	width:1000px;
+	height:80%;
+  	margin-right:29%;
+  	margin-top:3%;
   	padding: 0;
 
 } 
 .modal-content.modal-size {
-  height: auto;
-  min-height: 80%;
+	width:1000px;
+  	height: auto;
+  	min-height: 80%;
 }
+
 </style>
 
 
@@ -139,7 +143,7 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 		<span style="font-size: 45px; color: white;" id="storeName">${dto.storename}</span> &nbsp;&nbsp;
 		<span style="font-size: 23px; color: white;">${dto.category}</span>
 			<div id="lineup">
-				<button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#reserve">예약하기</button> 
+				<button type="button" class="btn btn-light" data-toggle="modal" data-target="#reserve">예약하기</button> 
 			</div>
 		</div><hr>
 		<div style="background-color: #FF6347; height: 50px;">
@@ -373,8 +377,8 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 
 	<!-- 에약을 위한 모달 창 -->
 	<div class="modal" id="reserve" role="dialog">
-		<div class="modal-dialog modal-center modal-lg">
-			<div class="modal-content modal-center">
+		<div class="modal-dialog modal-center modal-size">
+			<div class="modal-content modal-center modal-size">
 
 				<!-- Modal Header -->
 				<div class="modal-header">
@@ -386,13 +390,13 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 				<div class="modal-body" style="">
 				<script type="text/javascript" src="./js/ReservationForm.js"></script>	
 					<div>
-					<table border="1" style="">
+					<table border="1" class="table table-bordered table-sm">
 						<tr>
-							<td colspan="4">예약일시 / 인원</td>
+							<td colspan="4" style="padding-left:15px">예약일시 / 인원</td>
 						</tr>
-						<tr>
+						<tr style="height:290px">
 							<td colspan="2">
-								<table id="calendar" border="3" align="center" style="border-color: black; width:150px" >
+								<table id="calendar" style="border:none;width:380px;text-align:center" >
 									<tr>
 										<td><label onclick="prevCalendar()"> < </label></td>
 										<td align="center" id="tbCalendarYM" colspan="5">yyyy년 m월</td>
@@ -407,39 +411,40 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 										<td align="center">금</td>
 										<td align="center"><font color="blue">토</font></td>
 									</tr>
-								</table> <script>
+								</table> 
+								<script>
 									buildCalendar();
 								</script>
 							</td>
 							<td colspan="2"><div id="seatInfo"></div></td>
 						</tr>
 						<tr>
-							<td colspan="4">예약 고객 정보</td>
+							<td colspan="4" style="padding-left:15px">예약 고객 정보</td>
 						</tr>
 						<tr>
-							<td>이름</td>
-							<td><input type="text" id="reserveName" name="reserveName"
+							<td style="width:100px;text-align:center;padding-top:7px">이름</td>
+							<td style="width:300px"><input type="text" id="reserveName" name="reserveName" style="width:280px"
 								class="reserveName" /></td>
-							<td>연락처</td>
-							<td><select id="tel1">
+							<td style="width:100px;text-align:center;padding-top:7px">연락처</td>
+							<td><select id="tel1" style="width:80px;height:30px">
 									<option value="">::선택::</option>
 									<option value="010">010</option>
 									<option value="011">011</option>
 									<option value="016">016</option>
 									<option value="017">017</option>
 									<option value="019">019</option>
-							</select> <input type="text" id="tel2" size="4" value="" maxlength="4" />
-								<input type="text" id="tel3" size="4" value="" maxlength="4" />
+							</select> - <input type="text" id="tel2" size="4" value="" maxlength="4" style="width:80px"/>
+								- <input type="text" id="tel3" size="4" value="" maxlength="4" style="width:80px"/>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="1">이메일</td>
-							<td colspan="3"><input type="email" id="reserveEmail"
+							<td colspan="1" style="text-align:center;padding-top:7px">이메일</td>
+							<td colspan="3"><input type="email" id="reserveEmail" style="width:280px"
 								name="reserveEmail" class="reserveEmail" value="" /></td>
 						</tr>
-						<tr>
-							<td colspan="1">요청사항</td>
-							<td colspan="3"><textarea id="reserveComment"
+						<tr style="height:75px;">
+							<td colspan="1" style="padding-top:30px;text-align:center;">요청사항</td>
+							<td colspan="3" style="padding-bottom:-1px"><textarea id="reserveComment" cols="200" rows="3" style="resize:none;width:700px;height:75px"
 									name="reserveComment" class="reserveComment"></textarea></td>
 						</tr>
 					</table>
@@ -447,8 +452,8 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 				</div>
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" onclick="ReserveSubmit();">예약하기</button>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn btn-outline-secondary" onclick="ReserveSubmit();">예약하기</button>
+					<button type="button" class="btn btn btn-outline-secondary"   data-dismiss="modal">취소</button>
 				</div>
 
 			</div>

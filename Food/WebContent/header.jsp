@@ -1,13 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<link rel="stylesheet" href="/Food/css/header.css">
 
-<link rel="stylesheet" type="text/css"
-	href="https://asset02.flavr.co.kr/media/css_secure/637901f8abadb4061dc6647e4f5ef48d_1533254805.css"
-	media="all" />
-
-<meta id="viewport" name="viewport"
-	content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
 <link href="https://fonts.googleapis.com/css?family=Boogaloo"
 	rel="stylesheet">
 <style>
@@ -37,13 +32,10 @@ a.th:hover {
 
 </style>
 </head>
-<body class="flavr-body desktop-layout  main-index-index">
+<body >
 	<script>var reactScriptQueue = [];
 	</script>
 	<header>
-		<!--        <div class="chat">-->
-		<!--            <a href="javascript: alert('준비중 입니다.');"><i class="icon icon-chat"></i>message</a>-->
-		<!--        </div>-->
 		<div class="header">
 			<a href="<%=request.getContextPath()%>/main.mb" class="th">TASTY HOUSE </a>
 		</div>
@@ -52,13 +44,9 @@ a.th:hover {
 				<li><a href="<%=request.getContextPath()%>/main.mb" id="active">main</a></li>
 				<li><a href="/about" id="active">about</a></li>
 				<li><a href="<%=request.getContextPath()%>/postList.po" id="active">post</a></li>
-				<li><a href="" class="icon icon-my-login"></a></li>
+				<li><a href=""><img src="/Food/img/profile.png" style="width:25px;height:23px;vertical-align:center;"></a></li>
 			</ul>
-			<ul class="menu-my">
-				
-				
-				<!-- 로그아웃일때 -->
-			</ul>
+			
 		</nav>
 	</header>
 	<!-- 슬라이드 메뉴 만들기 예제  http://cpdev.tistory.com/82 -->

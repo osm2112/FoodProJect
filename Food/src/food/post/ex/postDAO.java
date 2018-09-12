@@ -116,8 +116,8 @@ public class postDAO {
 
 			while (rs.next()) {
 
-				dto = new postDTO();
-
+				dto = new postDTO(); 
+				
 				dto.setPost_id(rs.getString("post_id"));
 				dto.setWrite_id(rs.getString("write_id"));
 				dto.setWrite_name(rs.getString("write_name"));
