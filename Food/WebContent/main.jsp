@@ -24,7 +24,7 @@
 <link href="https://fonts.googleapis.com/css?family=Finger Paint"
 	rel="stylesheet">				
 	
-		
+	   	
 <!-- jQuery -->
 <script type="text/javascript"
 	src="https://dfzrjox9sv97l.cloudfront.net/dicons_20160930/jquery/1.11.2/jquery.min.js?2018072001"></script>
