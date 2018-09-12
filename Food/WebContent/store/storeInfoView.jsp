@@ -124,8 +124,9 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 				<div class="centered"  style="text-align: right;">
 					<div style="font-size: 15px;">
 						<input type="hidden" value="${dto.storeid}" name="storeId" id="storeId">
+						<input type="hidden" value="${user_state}" name="userState">
 						<img src="<%=request.getContextPath()%>/img/evaluation.png" width="40px" height="40px" id="lineup2">
-						<span style="color: white;" onclick="location.href='<%=request.getContextPath()%>/evalInputView.ev?storeid=${dto.storeid}'" id="evalButton">평가하기</span>&nbsp;&nbsp;
+						<span style="color: white;" onclick=goEval() id="evalButton">평가하기</span>&nbsp;&nbsp;
 						<img src="<%=request.getContextPath()%>/img/like_w.png" width="40px" height="40px" id="lineup2">
 						<span style="color: white;">좋아요</span>
 					</div>

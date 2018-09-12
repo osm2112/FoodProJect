@@ -86,7 +86,7 @@ $(function() {
 								$("#rs-wrapper").append(text1, rr);
 								$(".ReplyCentered2").eq(i).append(text2);
 
-								var text3 = "<div id='user'><img src='/Food/img/user-g.png' style='width:45px;height:45px;'></div>";
+								var text3 = "<div id='user'><img src='/Food/img/user-g.png' style='width:40px;height:40px;'></div>";
 								var text4 = "<div class='replyList'></div>";
 								var text8 = "<div style='float:right;margin-top:15px;margin-right:10px'><img src='/Food/img/menu2.png' style='width:20px;height:20px'></div>"
 
@@ -137,7 +137,7 @@ $(function() {
 		$("#rs-wrapper").prepend(text1, rr);
 		$(".ReplyCentered2").eq(0).append(text2);
 
-		var text3 = "<div id='user'><img src='/Food/img/user-g.png' style='width:45px;height:45px;'></div>";
+		var text3 = "<div id='user'><img src='/Food/img/user-g.png' style='width:40px;height:40px;'></div>";
 		var text4 = "<div class='replyList'></div>";
 		var text8 = "<div style='float:right;margin-top:15px;margin-right:10px'><img src='/Food/img/menu2.png' style='width:20px;height:20px'></div>"
 
@@ -210,10 +210,11 @@ $(document).on("click","#rrButton",function(){
 			
 			t1 = "<div class='" + reply_id + "' id='rrCentered' style='background-color:#F5F5F5'></div>";
 			t2 = "<div class='" + reply_id + "' id='rr-wrapper'></div>";
-			t3 = "<div id='user'><img src='/Food/img/user-g.png' style='width:45px;height:45px;'></div>";
+			t = "<div id='user'><img src='/Food/img/right-arrow.png' style='width:25px;height:25px'></div>";
+			t3 = "<div id='user'><img src='/Food/img/user-g.png' style='width:40px;height:40px;'></div>";
 			t4 = "<div class='" + reply_id + "' id='rrList'></div>";
 			t5 = "<div style='float:right;margin-top:15px;margin-right:10px'>"
-				+ "<img src='/Food/img/menu.png' style='width:25px;height:25px'></div>";
+				+ "<img src='/Food/img/menu2.png' style='width:20px;height:20px'></div>";
 			t6 = "<div id='write_id' style='padding:5px 0px'>"
 				+ o.write_id + "&nbsp;&nbsp;&nbsp;" + o.re_date + "</div>";
 			t7 = "<div style='padding:5px 0px'>" + o.re_content + "</div>";
@@ -221,7 +222,7 @@ $(document).on("click","#rrButton",function(){
 			
 			$("#rr"+reply_id).append(t1);
 			$("#rrCentered[class*='"+reply_id +"']").eq(i).append(t2);
-			$("#rr-wrapper[class*='"+reply_id +"']").eq(i).append(t3,t4,t5);
+			$("#rr-wrapper[class*='"+reply_id +"']").eq(i).append(t,t3,t4,t5);
 			$("#rrList[class*='"+reply_id +"']").eq(i).append(t6,t7);
 		
 			});
@@ -273,7 +274,7 @@ $(document).on("click","#rrSubmit",function(){
 		type : "POST",
 		url : "/Food/rrInput.rp",
 		data : formData,
-		success : callbackReRe2,
+		success : callbackReReAdd,
 	});
 	
 	function callbackReReAdd(result) {
@@ -290,7 +291,8 @@ $(document).on("click","#rrSubmit",function(){
 			
 			t1 = "<div class='" + reply_id + "' id='rrCentered' style='background-color:#F5F5F5'></div>";
 			t2 = "<div class='" + reply_id + "' id='rr-wrapper'></div>";
-			t3 = "<div id='user'><img src='/Food/img/user-g.png' style='width:45px;height:45px;'></div>";
+			t = "<div id='user'><img src='/Food/img/right-arrow.png' style='width:25px;height:25px'></div>";
+			t3 = "<div id='user'><img src='/Food/img/user-g.png' style='width:40px;height:40px;'></div>";
 			t4 = "<div class='" + reply_id + "' id='rrList'></div>";
 			t5 = "<div style='float:right;margin-top:15px;margin-right:10px'>"
 				+ "<img src='/Food/img/menu.png' style='width:25px;height:25px'></div>";
@@ -301,7 +303,7 @@ $(document).on("click","#rrSubmit",function(){
 			
 			$("#rr"+reply_id).append(t1);
 			$("#rrCentered[class*='"+reply_id +"']").eq(i).append(t2);
-			$("#rr-wrapper[class*='"+reply_id +"']").eq(i).append(t3,t4,t5);
+			$("#rr-wrapper[class*='"+reply_id +"']").eq(i).append(t,t3,t4,t5);
 			$("#rrList[class*='"+reply_id +"']").eq(i).append(t6,t7);
 		
 			});
