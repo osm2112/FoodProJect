@@ -91,7 +91,7 @@
 		}
 		getViewDate();
 	}); 
-	$(.)
+	
 	
 	
 	document.getElementById().style.
