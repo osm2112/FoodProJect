@@ -155,7 +155,7 @@ $(function() {
 
 		$(".replyList").eq(0).append(text5, text6, text7);
 
-		$("form[name=Reply] .r_content").val("");
+		$("form[name=Reply] #r_content").val("");
 
 	}
 	
@@ -219,27 +219,27 @@ $(document).on("click","#rrButton",function(){
 			t7 = "<div style='padding:5px 0px'>" + o.re_content + "</div>";
 		
 			
-			$("#rr[class*='"+reply_id + "']").append(t1);
-			$("#rrCentered[class*='"+reply_id +"']").append(t2);
-			$("#rr-wrapper[class*='"+reply_id +"']").append(t3,t4,t5);
-			$("#rrList[class*='"+reply_id +"']").append(t6,t7);
+			$("#rr"+reply_id).append(t1);
+			$("#rrCentered[class*='"+reply_id +"']").eq(i).append(t2);
+			$("#rr-wrapper[class*='"+reply_id +"']").eq(i).append(t3,t4,t5);
+			$("#rrList[class*='"+reply_id +"']").eq(i).append(t6,t7);
 		
 			});
 		}
 
 		var inx = datas.length;
 	
-		rw.append("<div class='rrCentered " + reply_id + "' style='background-color:#F5F5F5'></div>");
+		rw.append("<div class='" + reply_id + "' id='rrCentered' style='background-color:#F5F5F5'></div>");
 	
-		t1 = "<div class='rr-wrapper " + reply_id + "'></div>";
+		t1 = "<div class='" + reply_id + "' id='rr-wrapper'></div>";
 		t2 = "<div id='rr-close'>답글 닫기</div>";
-		t3 = "<form name='ReRe' class='" + reply_id + "'></form>";
+		t3 = "<form name='ReRe' id='form" + reply_id + "'</form>";
 		t4 = "<input type='hidden' name='write_id' value='" + id + "'>";
 		t5 = "<input type='hidden' name='post_id'	value='" + post_id + "'>";
-		t6 = "<fieldset class='replyReply " + reply_id + "' style='padding-right:-2px;background-color:white;'></fieldset>";
-		$(" .rrCentered[class*='"+reply_id +"']").append(t1,t2);
-		$(" .rr-wrapper[class*='"+reply_id +"']").append(t3);
-		$(" form[class*='"+reply_id +"']").append(t4,t5,t6);
+		t6 = "<fieldset id='replyReply" + reply_id + "' class='replyReply' style='padding-right:-2px;background-color:white;'></fieldset>";
+		$("#rrCentered[class*='"+reply_id +"']").eq(inx).append(t1,t2);
+		$("#rr-wrapper[class*='"+reply_id +"']").eq(inx).append(t3);
+		$("#form"+reply_id).append(t4,t5,t6);
 	
 		t1 = "<div id='writeId' style='margin:10px 0px 5px 15px;height:25px;'>" + w_id + "</div>";
 		t2 = "<textarea cols='100' rows='10' style='width:680px;'" 
@@ -249,7 +249,7 @@ $(document).on("click","#rrButton",function(){
 		     + "<input type='hidden' name='reply_id' value='" + reply_id + "'>"
 		     + "<button id='rrSubmit' type='button'>등록</button></div>";
 	
-		$(" .replyReply[class*='"+reply_id +"']").append(t1,t2,t3);
+		$("#replyReply"+reply_id).append(t1,t2,t3);
 		}
 	
 	}
@@ -257,7 +257,9 @@ $(document).on("click","#rrButton",function(){
 
 $(document).on("click","#rr-close",function(){
 	console.log("clickyyyy");
-	$(this).parent().remove().parent().hide();
+	$(this).parent().parent().css("display","none");
+	$(this).parent().parent().children().remove();
+	
 
 }); 
 
@@ -274,7 +276,7 @@ $(document).on("click","#rrSubmit",function(){
 		success : callbackReRe2,
 	});
 	
-	function callbackReRe2(result) {
+	function callbackReReAdd(result) {
 
 		var datas = JSON.parse(result);
 		console.log(datas);
@@ -298,9 +300,9 @@ $(document).on("click","#rrSubmit",function(){
 		
 			
 			$("#rr"+reply_id).append(t1);
-			$("#rrCentered[class*='"+reply_id +"']").append(t2);
-			$("#rr-wrapper[class*='"+reply_id +"']").append(t3,t4,t5);
-			$("#rrList[class*='"+reply_id +"']").append(t6,t7);
+			$("#rrCentered[class*='"+reply_id +"']").eq(i).append(t2);
+			$("#rr-wrapper[class*='"+reply_id +"']").eq(i).append(t3,t4,t5);
+			$("#rrList[class*='"+reply_id +"']").eq(i).append(t6,t7);
 		
 			});
 		}
