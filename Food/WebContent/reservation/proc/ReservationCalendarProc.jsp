@@ -10,6 +10,8 @@
 	String storeId 	 = request.getParameter("storeId");
 	String startDate = request.getParameter("startDate");
 	String endDate 	 = request.getParameter("endDate");
+	
+	System.out.println("dddd:"+storeId+startDate+endDate);
 
 	ReservationDAO dao = new ReservationDAO();
 	List<ReservationCalendarDTO> list = dao.GetCalendarEvent(storeId, startDate, endDate); 	

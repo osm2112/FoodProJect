@@ -20,35 +20,29 @@
 		});
 
 		$(".fc-prev-button").on("click", function() {
-			//alert("prev!!!");
 			getViewDate();
 		});
 		$(".fc-next-button").on("click", function() {
-			//alert("next!!!");
 			getViewDate();
 		});
 		$(".fc-today-button").on("click", function() {
-			//alert("today!!!");
 			getViewDate();
 		});
  		$(".fc-month-button").on("click", function() {
-			//alert("today!!!");
 			getViewDate();
 		});
 		$(".fc-agendaWeek-button").on("click", function() {
-			//alert("today!!!");
 			getViewDate();
 		});
 		$(".fc-agendaDay-button ").on("click", function() {
-			//alert("today!!!");
 			getViewDate();
 		});
 		$(".fc-listWeek-button").on("click", function() {
-			//alert("today!!!");
 			getViewDate();
 		});
 		
- 		function calEvent(dayObj, storeId) {
+ 		function calEvent(dayObj) {
+ 			var storeId = document.getElementById("storeId").value;
 			url = "ReservationCalendarProc.re?storeId="+storeId;
 			$.ajax({
 				dataType : "json",
@@ -80,14 +74,12 @@
 			var date = $('#calendar').fullCalendar('getView');
 			var start  = date.intervalStart.format('YYYY-MM-DD');
  			var end = date.intervalEnd.subtract(1, "days").format('YYYY-MM-DD');
- 			var storeId = document.getElementById("storeId").value;
- 			console.log(storeId);
  			var monthObj = {
 				startDate : start,
 				endDate : end
 			};
 			$('#calendar').fullCalendar('removeEvents');
-			calEvent(monthObj, storeId);
+			calEvent(monthObj);
 		}
 		getViewDate();
 	}); 

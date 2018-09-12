@@ -8,7 +8,7 @@ public class ReservationDeleteCommand implements ReservationCommand {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String userId 			= "osm2112"; //req.getSession().getAttribute("");
+		String userId 			= (String) req.getSession().getAttribute("id");
 		String reservationId 	= req.getParameter("reservationId").toString();
 		ReservationDAO dao = new ReservationDAO(); 
 		int msg = dao.DeleteReservation(reservationId, userId);

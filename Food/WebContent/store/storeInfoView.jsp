@@ -392,7 +392,7 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 					<div>
 					<table border="1" class="table table-bordered table-sm">
 						<tr>
-							<td colspan="4" style="padding-left:15px">예약일시 / 인원</td>
+							<td colspan="4" style="padding-left:15px">예약일시 / 인원<input type="hidden" id = "hiddenStoreId" value="<%=request.getParameter("storeid")%>"></td>
 						</tr>
 						<tr style="height:290px">
 							<td colspan="2">
@@ -420,7 +420,9 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 						</tr>
 						<tr>
 							<td colspan="4" style="padding-left:15px">예약 고객 정보</td>
+							
 						</tr>
+						
 						<tr>
 							<td style="width:100px;text-align:center;padding-top:7px">이름</td>
 							<td style="width:300px"><input type="text" id="reserveName" name="reserveName" style="width:280px"
