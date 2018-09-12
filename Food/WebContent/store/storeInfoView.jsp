@@ -296,7 +296,7 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 		$(big).parent().css('display','none');
 	};
 	
-	var store_id = $("#storeId").val();
+	var store_id = $("#storeId").val();   
 	
 	function goEval(){
 		
