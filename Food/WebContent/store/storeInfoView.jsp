@@ -1,12 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ page import="org.apache.commons.fileupload.DiskFileUpload"%>
-<%@ page import="org.apache.commons.fileupload.FileItem"%>
-<%@ page import="org.apache.commons.fileupload.FileUpload"%>
-<%@ page import="java.util.*"%>
-<%@ page import="java.io.File"%>
-<%@ page import="java.io.FileOutputStream"%>    
    
 <%@ page language="java" import="java.util.*"%>    
 <%@ page import="food.store.ex.storeDTO"%>
@@ -61,6 +54,35 @@ hr {
 }
 #evalButton {
 	cursor:pointer;
+}
+.modal {
+        text-align: center;
+}
+ 
+@media screen and (min-width: 768px) { 
+        .modal:before {
+                display: inline-block;
+                vertical-align: middle;
+                content: " ";
+                height: 100%;
+        }
+}
+ 
+.modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+}
+ .modal-dialog.modal-size{
+	 
+	width:100%;
+  	margin: 0;
+  	padding: 0;
+
+} 
+.modal-content.modal-size {
+  height: auto;
+  min-height: 80%;
 }
 </style>
 
@@ -125,7 +147,9 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 					<div style="font-size: 15px;">
 						<input type="hidden" value="${dto.storeid}" name="storeId" id="storeId">
 						<img src="<%=request.getContextPath()%>/img/evaluation.png" width="40px" height="40px" id="lineup2">
-						<span style="color: white;" onclick="location.href='<%=request.getContextPath()%>/evalInputView.ev?storeid=${dto.storeid}'" id="evalButton">평가하기</span>&nbsp;&nbsp;
+						<input type="hidden" value="${user_state}" name="userState">
+						<input type="hidden" value="${id}" name="id">
+						<span style="color: white;" onclick=goEval() id="evalButton">평가하기</span>&nbsp;&nbsp;
 						<img src="<%=request.getContextPath()%>/img/like_w.png" width="40px" height="40px" id="lineup2">
 						<span style="color: white;">좋아요</span>
 					</div>
@@ -295,19 +319,25 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 		$(big).parent().css('display','none');
 	};
 	
-	var store_id = $("#storeId").val();
+	var store_id = $("#storeId").val();   
 	
 	function goEval(){
-		
+		var id = $("input[name=id]").val();
 		var us = $("input[name=userState]").val();
 		
-		if(us == "owner"){
-			alert("일반 회원만 평가를 할 수 있습니다.^^*");
+		if(!id){
+			if (confirm("로그인 후 이용가능합니다.로그인 하시겠습니까?")) {
+				location.href = "/Food/member/login.jsp";
+			}
 		}
-		else{
-			location.href="<%=request.getContextPath()%>/evalInputView.ev?storeid="+store_id;
+		else {
+			if(us == "owner"){
+				alert("일반 회원만 평가를 할 수 있습니다.^^*");
+			}
+			else{
+				location.href="<%=request.getContextPath()%>/evalInputView.ev?storeid="+store_id;
+			}
 		}
-	
 	}
 	function goEvalDel(edel) {
 		
@@ -320,17 +350,6 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 		
 	};
 	
-	</script>
-	
-	
-	
-	
-	
-	
-	
-	
-	<script>
-
 	function imgbigView(img) {
 
 		var big = $(img).parent().children().last()
@@ -353,9 +372,9 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 <jsp:include page="../footer.html"></jsp:include>
 
 	<!-- 에약을 위한 모달 창 -->
-	<div class="modal" id="reserve">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
+	<div class="modal" id="reserve" role="dialog">
+		<div class="modal-dialog modal-center modal-lg">
+			<div class="modal-content modal-center">
 
 				<!-- Modal Header -->
 				<div class="modal-header">
@@ -364,10 +383,10 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 				</div>
 
 				<!-- Modal body -->
-				<div class="modal-body" style="text-align:center;">
+				<div class="modal-body" style="">
 				<script type="text/javascript" src="./js/ReservationForm.js"></script>	
 					<div>
-					<table border="1" style="width: 80%;">
+					<table border="1" style="">
 						<tr>
 							<td colspan="4">예약일시 / 인원</td>
 						</tr>

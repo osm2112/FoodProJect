@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="icon"
-	href="https://asset01.flavr.co.kr/skin/frontend/rwd/flavr/favicon.ico"
-	type="image/x-icon" />
-<link rel="shortcut icon"
-	href="https://asset01.flavr.co.kr/skin/frontend/rwd/flavr/favicon.ico"
-	type="image/x-icon" />
-<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-<link rel="manifest"
-	href="/skin/frontend/rwd/flavr/images/favicon/manifest.json">
-<meta name="msapplication-TileImage"
-	content="/skin/frontend/rwd/flavr/images/favicon/ms-icon-144x144.png">
+
 
 <link rel="stylesheet" type="text/css"
 	href="https://asset02.flavr.co.kr/media/css_secure/637901f8abadb4061dc6647e4f5ef48d_1533254805.css"
@@ -28,7 +18,7 @@
 	height: 80px;
 	text-align: center;
 	padding: 15px 0px 0px 0px;
-	text-shadow: 1px 1px black;
+	text-shadow: 1px 1px grey;
 }
 
 a.th {
@@ -42,9 +32,7 @@ a.th:hover {
 }
 #active{
 	color:#FFFAFA;
-	font-size:25px;
-	text-shadow: 1px 1px black;
-	font-family: 'Boogaloo';
+	font-size:20px;
 }  
 
 </style>
@@ -59,7 +47,7 @@ a.th:hover {
 		<div class="header">
 			<a href="<%=request.getContextPath()%>/main.mb" class="th">TASTY HOUSE </a>
 		</div>
-		<nav class="gnb-nav">
+		<nav class="gnb-nav" style="margin-top:5px;">
 			<ul class="menu-top">
 				<li><a href="<%=request.getContextPath()%>/main.mb" id="active">main</a></li>
 				<li><a href="/about" id="active">about</a></li>
