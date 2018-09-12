@@ -16,8 +16,6 @@
 	width: 1000px;
 }
 </style>
-
- 
 </head>
 <body>
 	<jsp:include page="../../header.jsp"></jsp:include>
@@ -25,17 +23,14 @@
 	<br>
 
 	<%
-		String pageNum = (String) request.getParameter("pageNum");
-		String content = (String) request.getAttribute("content");
-		String id = (String)session.getAttribute("id");
-		String storeid = (String)request.getAttribute("storeid");
-		String tc = (String) request.getAttribute("totalCount");
-		String check = (String) request.getAttribute("check");
+		String pageNum 	= (String) request.getParameter("pageNum");
+		String content 	= (String) request.getAttribute("content");
+		String id 		= (String) session.getAttribute("id");
+		String storeid	= (String) request.getAttribute("storeid");
+		String tc 		= (String) request.getAttribute("totalCount");
+		String check 	= (String) request.getAttribute("check");
 		int pageNo;
-
-		ReservationDAO dao = new ReservationDAO();
-
-	
+		int TotalCount = 0;
 
 		if (pageNum == null) {
 			pageNo = 1;
@@ -43,32 +38,29 @@
 			pageNo = Integer.parseInt(pageNum);
 		}
 
-
-		int TotalCount = 0;
 		if (tc != null) {
 			TotalCount = Integer.parseInt(tc);
 		}
-		System.out.println("TotalCount : " + TotalCount);
+		
 		int No = TotalCount - (pageNo - 1) * 5;
-
 		int pageCount, pre, next;
-
+		
 		if (pageNo > 1)
 			pre = pageNo - 1;
 		else
 			pre = pageNo;
-
+		
 		if (TotalCount != pageNo * 5)
 			pageCount = TotalCount / 5 + 1;
 		else
 			pageCount = TotalCount / 5;
-
+		
 		if ((pageNo + 1) <= pageCount)
 			next = pageNo + 1;
 		else
 			next = pageCount;
+		
 	%>
-
 	<div class="centered">
 		<h3>예약 관리</h3>
 		<br>
@@ -83,7 +75,7 @@
 			<c:forEach items="${storeList}" var="dto">
 				<tbody>
 				<tr>
-					<td><%=No%></td>
+					<td>${dto.count}</td>
 					<td>${dto.storeid}</td>
 					<td>${dto.storename}</td>
 					<% No = No - 1; %>
@@ -91,7 +83,6 @@
 				</tbody>
 			</c:forEach>
 		</table>
-
 		<%
 			if (content == null) {
 		%>
@@ -100,7 +91,7 @@
 			<nav aria-label="pagination example">
 			<ul class="pagination pagination-lg">
 				<li class="page-item">
-					<a class="page-link" href="/Food/manageStore.sto?id=<%=id%>&pageNum=<%=pre%>">
+					<a class="page-link" href="./ReservatonStoreList.re?pageNum=<%=pre%>">
 						<span aria-hidden="true">&laquo;</span>
                 		<span class="sr-only">Previous</span>
 					</a>
@@ -109,11 +100,11 @@
 					for (int i = 1; i <= pageCount; i++) {
 				%>
 				<li class="page-item">
-					<a class="page-link" href="/Food/manageStore.sto?id=<%=id%>&pageNum=<%=i%>"><%=i%></a>
+					<a class="page-link" href="./ReservatonStoreList.re?pageNum=<%=i%>"><%=i%></a>
 				</li>
 				<%}%>
 				<li class="page-item">
-					<a class="page-link" href="/Food/manageStore.sto?id=<%=id%>&pageNum=<%=next%>">
+					<a class="page-link" href="./ReservatonStoreList.re?pageNum=<%=next%>">
 					<span aria-hidden="true">&raquo;</span>
                 	<span class="sr-only">Next</span>
 					</a>
@@ -127,6 +118,5 @@
 		%>
 	</div>
 	<jsp:include page="../../footer.html"></jsp:include>
-
 </body>
 </html>

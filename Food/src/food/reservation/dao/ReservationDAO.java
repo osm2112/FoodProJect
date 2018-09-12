@@ -11,12 +11,35 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import food.reservation.dto.ReservationCalendarDTO;
 import food.reservation.dto.ReservationDTO;
+import food.store.ex.storeDTO;
 
 public class ReservationDAO {
+	
 	Connection conn = null;
 	ResultSet rs = null;
+	DataSource dataSource;
+	private static ReservationDAO instance;
+	
+	public static ReservationDAO getInstance() {
+		if (instance == null)
+			instance = new ReservationDAO();
+		return instance;
+	}
+	
+	public ReservationDAO() {
+		try {
+			Context context = new InitialContext();
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public Connection getConnection() {
 		try {
 			String user = "hr";
@@ -325,6 +348,95 @@ public class ReservationDAO {
 		return list;
 	}
 	
-	
-	
+	//매장  목록
+	public List<storeDTO> StoreList(String pageNum, String id) {
+		storeDTO dto = null;
+		List<storeDTO> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int page;
+		if (pageNum == null) {
+			page = 1;
+		} else {
+			page = Integer.parseInt(pageNum);
+		} 
+		int countPage = 5;
+		int start = (page - 1) * countPage + 1; 
+		int end = page * countPage; 
+		try {
+
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
+			String sql = " select *																  " + 
+						 "   from ( select rownum as rnum, 										  " + 
+						 "         		   count, 												  " + 
+						 "                 storeid, 											  " + 
+						 "             		   storename									      " + 
+						 "        from (select count, 											  " +
+						 "			           storeid, 										  " +
+						 "					   storename  										  " + 
+						 "				  from store where id = ? order by count desc)  		  " + 
+						 "        )																  " + 
+						 "  where ? <= rnum and rnum <= ?										  ";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			rs = pstmt.executeQuery();		
+			while(rs.next()) {
+				dto = new storeDTO();
+				dto.setCount(rs.getString("count"));
+				dto.setStoreid(rs.getString("storeid"));
+				dto.setStorename(rs.getString("storename"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	// StoreList의 총 개수
+	public String StoreCountList(String id) {
+		String cnt = null;
+		PreparedStatement pstmt = null;
+		try {
+
+			conn = dataSource.getConnection();
+			String sql = "select count(*) as cnt from store where id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			rs.next();
+			cnt = rs.getString("cnt");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return cnt;
+
+	}
+
 }
