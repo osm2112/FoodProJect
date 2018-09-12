@@ -63,7 +63,6 @@
 					var text1,text2,text3,text4,text5,text6;
 					$.each($items,function(i,o){
 						
-						console.log("rrrrrr"+o.write_id);
 						i += startView;
 				
 						$("#evalView").append("<div class='eval-wrapper'></div>");
