@@ -11,6 +11,7 @@
 <script src='./fullcalendar/lib/jquery.min.js'></script>
 <script src='./fullcalendar/fullcalendar.js'></script>
 <script src='./fullcalendar/locale-all.js'></script>
+<script src='./js/ReservationCalendar.js'></script>
 <script>
 
 
@@ -30,7 +31,10 @@ body {
 </style>
 </head>
 <body>
+	<jsp:include page="../../header.jsp"></jsp:include>
 	<div id='calendar'></div>
+	<input type= "hidden" id ="storeId" value="<%= request.getParameter("storeId") %>" >
+	
 </body>
 </html>
 

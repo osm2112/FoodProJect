@@ -48,8 +48,8 @@
 			getViewDate();
 		});
 		
- 		function calEvent(dayObj) {
-			url = "ReservationCalendarProc.re";
+ 		function calEvent(dayObj, storeId) {
+			url = "ReservationCalendarProc.re?storeId="+storeId;
 			$.ajax({
 				dataType : "json",
 				data : dayObj,
@@ -80,12 +80,18 @@
 			var date = $('#calendar').fullCalendar('getView');
 			var start  = date.intervalStart.format('YYYY-MM-DD');
  			var end = date.intervalEnd.subtract(1, "days").format('YYYY-MM-DD');
+ 			var storeId = document.getElementById("storeId").value;
+ 			console.log(storeId);
  			var monthObj = {
 				startDate : start,
 				endDate : end
 			};
 			$('#calendar').fullCalendar('removeEvents');
-			calEvent(monthObj, start, end);
+			calEvent(monthObj, storeId);
 		}
 		getViewDate();
 	}); 
+	$(.)
+	
+	
+	document.getElementById().style.
