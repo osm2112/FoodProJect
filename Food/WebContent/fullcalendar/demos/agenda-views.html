@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<link href='../fullcalendar.css' rel='stylesheet' />
+<link href='../fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='../lib/moment.min.js'></script>
+<script src='../lib/jquery.min.js'></script>
+<script src='../fullcalendar.js'></script>
+<script src='../locale-all.js'></script>
+<script>
+
+	var today = new Date();
+	$(document).ready(function() {
+
+		$('#calendar').fullCalendar({
+			header : {
+				left : 'prev,next today',
+				center : 'title',
+				right : 'month,agendaWeek,agendaDay,listWeek'
+			},
+			defaultDate : today,
+			navLinks : true, // can click day/week names to navigate views
+			editable : false,
+			droppable : false,
+			eventLimit : true, // allow "more" link when too many events
+			locale : 'ko'
+		});
+
+		$(".fc-prev-button").on("click", function() {
+			//alert("prev!!!");
+			getViewDate();
+		});
+		$(".fc-next-button").on("click", function() {
+			//alert("next!!!");
+			getViewDate();
+		});
+		$(".fc-today-button").on("click", function() {
+			//alert("today!!!");
+			getViewDate();
+		});
+		$(".fc-month-button").on("click", function() {
+			//alert("today!!!");
+			getViewDate();
+		});
+		$(".fc-agendaWeek-button").on("click", function() {
+			//alert("today!!!");
+			getViewDate();
+		});
+		$(".fc-agendaDay-button ").on("click", function() {
+			//alert("today!!!");
+			getViewDate();
+		});
+		$(".fc-listWeek-button").on("click", function() {
+			//alert("today!!!");
+			getViewDate();
+		});
+
+		
+		function renderCalcEvent(data) {
+			console.log(data);
+			  for (var i = 0; i < data.length; i++) {
+				  
+			    var title = data[i].title;
+			    var start = data[i].start;
+			    var end = data[i].end;
+			    var col = "blue";
+			    var date = data[i].regDt;
+			    console.log(title);
+			    var event = {
+			      title: title,
+			      url: '/',
+			      start: start,
+			      end: end, 
+			      allDay: false,
+			      color: col
+			    };
+			 
+			    $('#calendar').fullCalendar('renderEvent', event);
+			  }
+			}
+		
+ 		function calEvent(dayObj, locationIdx) {
+			url = "/Food/reservation/proc/ReservationCalendarProc.jsp";
+			$.ajax({
+				dataType : "json",
+				data : dayObj,
+				type : "POST",
+				url : url,
+				async : false,
+				success : function(data) {
+					if (data.state == "success") {
+						renderCalcEvent(data.CalEvent);
+					}
+				},
+				error : function(request, status, error) {
+					console.log("code:" + request.status + "\n" + "message:" +
+						request.responseText + "\n" + "error:" +
+						error);
+				}
+			});
+		} 
+		function getViewDate() {
+			var date = $('#calendar').fullCalendar('getView');
+			var start  = date.intervalStart.format('YYYY-MM-DD');
+ 			var end = date.intervalEnd.subtract(1, "days").format('YYYY-MM-DD');
+ 			var monthObj = {
+				startDate : date.intervalStart.format('YYYY-MM-DD'),
+				endDate : date.intervalEnd.subtract(1, "days").format('YYYY-MM-DD')
+			};
+			$('#calendar').fullCalendar('removeEvents');
+			calEvent(monthObj, '');
+		}
+	}); 
+</script>
+<style>
+body {
+	margin: 40px 10px;
+	padding: 0;
+	font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
+	font-size: 14px;
+}
+
+#calendar {
+	max-width: 900px;
+	margin: 0 auto;
+}
+</style>
+</head>
+<body>
+
+	<div id='calendar'></div>
+
+</body>
+</html>

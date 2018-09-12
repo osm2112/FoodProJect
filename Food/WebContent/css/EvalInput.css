@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+.header {
+	font: 40px bold oblique;
+	font-weight: 800;
+	height: 70px;
+	text-align: center;
+	padding: 15px 0px 0px 0px;
+	text-shadow: 1px 2px #ffc267;
+}
+
+.centered {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	width: 800px;
+}
+
+.size {
+	height: 50px;
+}
+
+.storeInfo {
+	width: 280px;
+	height: 380px;
+	margin: 0px;
+	float: left;
+	text-align: center;
+	font-size: 13px;
+	border: 1px solid lightgrey;
+}
+
+.evalue {
+	height: 500px;
+	width: 515px;
+	margin-left: 300px;
+	padding-left: 5px;
+}
+
+.imageSize {
+	width: 250px;
+	height: 180px;
+	margin-left: 5px;
+}
+
+.image {
+	border-bottom: 1px solid lightgrey;
+	width: 270px;
+	height: 230px;
+	padding: 5px 5px 15px 5px;
+}
+
+.storename {
+	font-size: 25px;
+	padding: 10px;
+	font-weight: 800;
+}
+
+.addr {
+	padding: 10px;
+	text-align: center;
+	font-size: 14px;
+}
+
+.total {
+	padding: 15px 25px 0px 25px;
+	text-align: left;
+}
+
+.detail {
+	padding: 5px 30px 5px 25px;
+	text-align: left;
+}
+
+#detail {
+	padding: 10px 25px 0px 25px;
+	text-align: left;
+}
+
+.fas {
+	color: red;
+	width: 20px;
+	margin-top: -5px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.far {
+	color: red;
+	width: 20px;
+	margin-top: -5px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.reply {
+	padding: 5px 30px 5px 25px;
+}
+
+#reply {
+	padding: 10px 25px 5px 25px;
+}
+
+#photoupload {
+	padding: 10px 25px 5px 25px;
+	height: 100px;
+}
+
+#photoButton {
+	background-color: white;
+	border: 1px solid lightgrey;
+	width:80px;
+	height:30px;
+}
+
+#photoButton:hover {
+	cursor: pointer;
+}
+#imgDiv1, #imgDiv2 ,#imgDiv3{
+	width:90px;
+	height:90px;
+	float:left;
+}
+#imgDiv1:hover #remove{
+	opacity:0.8;
+}
+#imgDiv2:hover #remove{
+	opacity:0.8;
+}
+#imgDiv3:hover #remove{
+	opacity:0.8;
+}
+#remove{
+	width:20px;
+	height:20px;
+	margin-left:-20px;
+	margin-top:70px;
+	opacity: 0;
+	transition: opacity 0.5s;
+	cursor:pointer;
+}
+
+

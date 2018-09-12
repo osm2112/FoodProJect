@@ -1,0 +1,181 @@
+@charset "UTF-8";
+
+.size {
+	height: 50px;
+}
+
+.centered2{
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	width: 900px;
+	border-bottom:1px solid lightgrey;
+}
+.eval-wrapper {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	width: 900px;
+	border-bottom:1px solid lightgrey;
+}
+
+.result {
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#evaluate {
+	font-size: 35px;
+	font-weight: 800;
+	color: #696969;
+	font-family: '고딕';
+	margin: 0px 10px 10px 30px;
+}
+
+#total {
+	font-size: 45px;
+	font-weight: 800;
+	color: grey;
+}
+
+#totalDiv {
+	margin:10px 0px 0px 0px;
+	width:250px;
+	height:180px;
+	text-align:center;
+	float:left;
+	font-family: '고딕';
+	padding-bottom:-5px;
+}
+#chartDiv {
+	float:right;
+	width:450px;
+	height:180px;
+	font-size:23px;
+	font-weight:800;
+	color:grey;
+	margin: 10px;
+	padding-top:10px;
+}
+#starDiv {
+	float:left;
+	width:60px;
+	font-size:20px;
+	font-weight:800;
+	color:lightgrey;
+	text-align:right;
+	font-family: '고딕';
+	margin:5px;
+}
+div .charts__chart{
+	
+	margin-bottom:6px;
+	height:25px;
+	
+}
+#detailDiv {
+	float:left;
+	width:800px;
+	margin-left:10px;
+	margin-top:-5px;
+	font-size:15px;
+
+}
+.far {
+	color: #FF6347;
+	width: 15px;
+	font-size: 20px;
+	margin:2px;
+}
+.fas{
+	color: #FF6347;
+	width: 15px;
+	font-size: 20px;
+	margin:2px;
+}
+#totalFas .fas{
+	color: #FF6347;
+	font-size: 30px;
+	margin:5px;
+}
+#totalFas .far{
+	color: #FF6347;
+	font-size: 30px;
+	margin:10px;
+}
+.evalList	{
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#user {
+	height:200px;
+	margin-top:20px;
+	float:left;
+	margin-right:0px;
+	width:60px;
+
+}
+.eval {
+	margin:20px 0px 10px 0px;
+	padding:10px;
+	float:left;
+	text-align:left;
+	width:600px;
+	font-size:15px;
+}
+#ex,.dt-wrapper, .ev-content{
+	padding-bottom:7px;
+}
+#ex .far, #ex .fas{
+	font-size:20px;
+	margin:2px;
+	width:20px;
+}
+.dt-wrapper .far, .dt-wrapper .fas{
+	font-size:15px;
+	margin:2px;
+	width:15px;
+}
+
+#hidden {
+	visibility: hidden;
+}
+#listSize {
+	visibility: hidden;
+}
+.more {
+	text-align:center;
+	height:20px;
+	cursor:pointer;
+	padding-bottom:10px;
+	width:900px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size:15px;
+}
+.more:hover {
+	background-color:#f6f6f6;
+}
+#bigimg {
+	position: relative;
+	width: 800px;
+	height:650px;
+	overflow: hidden;
+	margin-top:-500px;
+	margin-left:-60px;
+	padding-bottom: 56.26%;
+}
+#bigimg img {
+	position: absolute;
+	top: -50px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.img-wrapper img{
+	
+	display:inline-block;
+	
+}
