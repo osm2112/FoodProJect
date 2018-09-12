@@ -45,6 +45,7 @@ ReservationDTO dto = (ReservationDTO) request.getAttribute("ReservationDetail");
 </script>
 </head>
 <body>
+<jsp:include page="../../header.jsp"></jsp:include>
 	<table border="1">
 		<tr>
 			<td>예약번호</td>
