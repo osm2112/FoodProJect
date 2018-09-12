@@ -186,7 +186,7 @@ hr {
 
 				<!-- Modal body -->
 				<div class="modal-body" style="text-align:center;">
-				<script type="text/javascript" src="../js/ReservationForm.js"></script>	
+				<script type="text/javascript" src="./js/ReservationForm.js"></script>	
 					<div>
 					<table border="1" style="width: 80%;">
 						<tr>

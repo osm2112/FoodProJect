@@ -14,14 +14,17 @@ public class ReservationListCommand implements ReservationCommand {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String userId = "osm2112";//req.getSession().getAttribute("id").toString();
+		String userId = req.getSession().getAttribute("id").toString();
+		System.out.println(userId);
 		ReservationDAO dao = new ReservationDAO();
 		List<ReservationDTO> reservationList = new ArrayList<>();
 		int page = 1;
 		int limit = 5;
+		System.out.println(req.getParameter("page"));
 		if (req.getParameter("page") != null) {
 			page = Integer.parseInt(req.getParameter("page"));
 		}
+		System.out.println(page);
 		int listcount = dao.GetReservationListCount(userId);
 		System.out.println("listcount=" + listcount);
 		reservationList = dao.GetReservationList(userId, page, limit); 

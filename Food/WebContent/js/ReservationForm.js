@@ -80,7 +80,7 @@ function SeatCheck(i) {
 			document.getElementById("seatInfo").innerHTML = this.responseText;
 		}
 	};
-	xhttp.open("Post", "../ReservationSeatCheckProc.re?storeId=" + storeId + "&reserveDate=" + reserveDate, true);
+	xhttp.open("Post", "./ReservationSeatCheckProc.re?storeId=" + storeId + "&reserveDate=" + reserveDate, true);
 	xhttp.send();
 
 	let lastDate = new Date(today.getFullYear(), today.getMonth() + 1, 0);
@@ -103,12 +103,11 @@ function SeatCheck(i) {
 }
 
 function ReserveSubmit() {
-	let reserseStoreId = "store0001"; //document.getElementById("reserveStore").value;
+	let reserseStoreId = document.getElementById("storeId").value;
 	let reserveName = document.getElementById("reserveName").value;
-	console.log(document.querySelector('input[name="dateCheck"]:checked'));
 	let reserveDate;
-	let reserveTime
-	let reserveSeat
+	let reserveTime;
+	let reserveSeat;
 	if(document.querySelector('input[name="dateCheck"]:checked') !=null ){
 		reserveDate = document.querySelector('input[name="dateCheck"]:checked').parentNode.parentNode.childNodes.item(11).childNodes.item(3).value;
 		reserveTime = document.querySelector('input[name="dateCheck"]:checked').parentNode.parentNode.childNodes.item(11).childNodes.item(5).value;
@@ -162,7 +161,7 @@ function ReserveSubmit() {
 				return false;
 			}*/
 		}
-		form.action = "../ReservationInsert.re";
+		form.action = "./ReservationInsert.re";
 		form.method = "post";
 		parm.push([ 'reserseStoreId', reserseStoreId ]);
 		parm.push([ 'reserveName', reserveName ]);

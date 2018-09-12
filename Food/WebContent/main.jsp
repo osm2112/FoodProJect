@@ -306,7 +306,7 @@
 								<%
 									}
 								%>
-								<li id="active"><a href="#" onClick="'#'">예약
+								<li id="active"><a href="#" onClick="location.href='ReservationList.re'">예약
 										확인 </a></li>
 								<li id="active"><a href="#" 
 									onClick="location.href='memberInfo.mb?id=<%=id%>';">나의 정보 </a></li>

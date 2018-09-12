@@ -7,6 +7,7 @@
 <title>예약 내용 확인</title>
 </head>
 <body>
+<jsp:include page="../../header.jsp"></jsp:include>
 <div style="text-align:center;">
 	<h3>예약 내용 확인 </h3>
 </div>

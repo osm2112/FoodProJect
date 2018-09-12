@@ -9,6 +9,8 @@
 	int maxpage = ((Integer) request.getAttribute("maxpage")).intValue();
 	int startpage = ((Integer) request.getAttribute("startpage")).intValue();
 	int endpage = ((Integer) request.getAttribute("endpage")).intValue();
+	
+	System.out.println(nowpage);
 %>
 <!DOCTYPE html>
 <html>
@@ -17,6 +19,7 @@
 <title>예약 내역 조회</title>
 </head>
 <body>
+<jsp:include page="../../header.jsp"></jsp:include>
 	<table border="1">
 		<tr>
 			<td>예약번호</td>
@@ -29,7 +32,7 @@
             ReservationDTO dto = (ReservationDTO) ReservationList.get(i);
 		 %>
 		<tr>
-			<td><a href="ReservationDetail.re?reservationId=<%=dto.getReservationId()%>&page=<%=request.getParameter("page")%>"><%=dto.getReservationId()%></a></td>
+			<td><a href="ReservationDetail.re?reservationId=<%=dto.getReservationId()%>&page=<%=nowpage%>"><%=dto.getReservationId()%></a></td>
 			<td><%=dto.getStoreName() %></td>
 			<td><%=dto.getReserveDate() %></td>
 			<td><%=dto.getReserveTime() %></td>

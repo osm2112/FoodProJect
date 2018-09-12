@@ -239,7 +239,7 @@ public class ReservationDAO {
 				"				     SELECT ROWNUM RNUM, RESERVATION_ID, STORENAME,RESERVE_DATE,RESERVE_TIME	" + 
 				"				   	   FROM ( SELECT * 													   		" + 
 				"				   	          	FROM RESERVATION A JOIN STORE B									" + 
-				"                             	  ON A.STORE_ID = B.CODE										" + 
+				"                             	  ON A.STORE_ID = B.STOREID										" + 
 				"                              WHERE USER_ID= ?													" + 
 				"				   		       ORDER BY RESERVE_DATE DESC, RESERVE_TIME ASC 					" + 
 				"                     		 )						  											" + 
