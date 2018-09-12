@@ -14,6 +14,7 @@ import food.reservation.command.ReservationDeleteCommand;
 import food.reservation.command.ReservationDetailCommand;
 import food.reservation.command.ReservationInsertCommand;
 import food.reservation.command.ReservationListCommand;
+import food.reservation.command.ReservationStoreLIstCommand;
 import food.reservation.dto.ReservationDTO;
 
 @WebServlet("*.re")
@@ -86,6 +87,12 @@ public class ReservationController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
 
+		} else if (com.equals("/ReservatonStoreListForm.re")) {
+
+			viewPage = "/reservation/view/ReservatonStoreListForm.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+
 		} else if (com.equals("/ReservationInsert.re")) {
 
 			command = new ReservationInsertCommand();
@@ -130,6 +137,13 @@ public class ReservationController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "ReservationList.re?page=" + page;
 			response.sendRedirect(viewPage);
+
+		} else if (com.equals("/ReservatonStoreList.re")) {
+			command = new ReservationStoreLIstCommand();
+			command.execute(request, response);
+			viewPage = "ReservatonStoreListForm.re";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
 
 		}
 

@@ -92,6 +92,3 @@
 		getViewDate();
 	}); 
 	
-	
-	
-	document.getElementById().style.
