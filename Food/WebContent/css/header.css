@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+header .gnb-nav {
+	position: absolute;
+	top: 27px;
+	right: 15px
+}
+
+header .gnb-nav .menu-top {
+	float: left;
+	margin: 1px 30px 0 0
+}
+
+header .gnb-nav .menu-top li {
+	display: inline-block;
+	margin-left: 20px
+}
+
+header .gnb-nav .menu-top li a {
+	font-family: 'campton', "Droid Sans", "Apple SD Gothic Neo",
+		"Nanum Gothic";
+	font-weight: bold;
+	font-size: 18px;
+	font-weight: bold;
+	color: #000;
+	letter-spacing: 0;
+	color: rgba(0, 0, 0, .5)
+}
+.icon-my-login {
+	background-image:
+		url(/skin/frontend/rwd/flavr/images/sprite-5311cbb4ad.png.pagespeed.ce.UxHLtK1oqh.png);
+	background-position: -334px -216px;
+	width: 22px;
+	height: 22px
+}
