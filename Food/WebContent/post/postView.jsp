@@ -62,7 +62,7 @@
 	<!-- ///////////////////////////여기서부터 답글 /////////////////////////////////-->
 	<div class="size"></div>
 	<div class="ReplyCentered">
-		<div style="margin:10px 10px 10px 0px;font-size:20px;font-weight:800">댓글 0</div>
+		<div style="margin:10px 10px 10px 0px;font-size:20px;font-weight:800">댓글 <span id="replyCount"></span></div>
 		<div>
 			<form method="post" action="" name="Reply">
 			<input type="hidden" name="write_id" value="${id}">

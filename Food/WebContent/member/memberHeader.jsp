@@ -12,7 +12,7 @@
 	height: 80px;
 	text-align: center;
 	padding: 20px 0px 0px 0px;
-	text-shadow:2px 1px black;
+	text-shadow: 1px 1px grey;
 }
 </style>
 </head>

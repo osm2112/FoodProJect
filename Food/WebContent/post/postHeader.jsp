@@ -32,7 +32,7 @@ a.th {
 	font: 65px bold;
 	font-weight: 800;
 	color: #FF6347; 
-	text-shadow:2px 1px black;
+	text-shadow: 1px 1px grey;
 	font-family:Boogaloo;	
 /*  	font-family:Oswald; */
 /* 	font-family:'Playfair Display'; */
@@ -126,7 +126,7 @@ ul, li {
 	
 	function goCommendList(){
 		location.href="<%=request.getContextPath()%>/postList.po?order=post_commend";
-	};
+	}
 	
 	
 	</script>

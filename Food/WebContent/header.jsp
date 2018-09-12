@@ -14,12 +14,14 @@
 	text-align: center;
 	padding: 15px 0px 0px 0px;
 	text-shadow: 1px 1px grey;
+	
 }
 
 a.th {
 	padding: 10px;
 	color:#FFFAFA;
 	font-family: 'Boogaloo';
+	text-decoration:none;
 }
 a.th:hover {
 	color:#FF6347;
@@ -44,7 +46,7 @@ a.th:hover {
 				<li><a href="<%=request.getContextPath()%>/main.mb" id="active">main</a></li>
 				<li><a href="/about" id="active">about</a></li>
 				<li><a href="<%=request.getContextPath()%>/postList.po" id="active">post</a></li>
-				<li><a href=""><img src="/Food/img/profile.png" style="width:25px;height:23px;vertical-align:center;"></a></li>
+				<li><a href=""><img src="/Food/img/profile.png" style="width:25px;height:23px;vertical-align:bottom"></a></li>
 			</ul>
 			
 		</nav>
