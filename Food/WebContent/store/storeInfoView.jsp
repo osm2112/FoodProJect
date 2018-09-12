@@ -124,8 +124,9 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 				<div class="centered"  style="text-align: right;">
 					<div style="font-size: 15px;">
 						<input type="hidden" value="${dto.storeid}" name="storeId" id="storeId">
-						<input type="hidden" value="${user_state}" name="userState">
 						<img src="<%=request.getContextPath()%>/img/evaluation.png" width="40px" height="40px" id="lineup2">
+						<input type="hidden" value="${user_state}" name="userState">
+						<input type="hidden" value="${id}" name="id">
 						<span style="color: white;" onclick=goEval() id="evalButton">평가하기</span>&nbsp;&nbsp;
 						<img src="<%=request.getContextPath()%>/img/like_w.png" width="40px" height="40px" id="lineup2">
 						<span style="color: white;">좋아요</span>
@@ -299,16 +300,22 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 	var store_id = $("#storeId").val();   
 	
 	function goEval(){
-		
+		var id = $("input[name=id]").val();
 		var us = $("input[name=userState]").val();
 		
-		if(us == "owner"){
-			alert("일반 회원만 평가를 할 수 있습니다.^^*");
+		if(!id){
+			if (confirm("로그인 후 이용가능합니다.로그인 하시겠습니까?")) {
+				location.href = "/Food/member/login.jsp";
+			}
 		}
-		else{
-			location.href="<%=request.getContextPath()%>/evalInputView.ev?storeid="+store_id;
+		else {
+			if(us == "owner"){
+				alert("일반 회원만 평가를 할 수 있습니다.^^*");
+			}
+			else{
+				location.href="<%=request.getContextPath()%>/evalInputView.ev?storeid="+store_id;
+			}
 		}
-	   
 	}
 	function goEvalDel(edel) {
 		

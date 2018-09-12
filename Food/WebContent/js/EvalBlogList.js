@@ -10,6 +10,8 @@
 		
 		var store_id = $("#storeId").val();
 		console.log(store_id);
+		
+		var id = $("input[name=id]").val();
 			
 		$.ajax({		
 				url : "/Food/evalList.ev?store_id="+store_id,
@@ -55,12 +57,13 @@
 				{$("#more1").hide();}
 				
 				if(datas.length>0){
-					
+										
 					var $items = datas.slice(startView,endView);
 					
 					var text1,text2,text3,text4,text5,text6;
 					$.each($items,function(i,o){
 						
+						console.log("rrrrrr"+o.write_id);
 						i += startView;
 				
 						$("#evalView").append("<div class='eval-wrapper'></div>");
@@ -70,7 +73,19 @@
 						
 						$(".evalList").eq(i).append(text1,text2);
 						
-					    text1 = "<div id='ex'>" + o.write_id + "&nbsp;&nbsp;"+o.eval_date+"</div>";
+						
+					    text1 = "<div id='ex'>" + o.write_id.substring(0, 3).concat("*****") + "&nbsp;&nbsp;"+o.eval_date;
+					    
+					    var del = "<input type='button' class='btn btn-light btn-lg' style='float:right;'" 
+				    			  +" onclick='goEvalDel(this)' value='삭제' id='" + o.eval_id +"'> "
+				    			  +"<input type='hidden' name='write_id' value='" + o.write_id + "'>" 
+					    
+				    	if(id  == o.write_id){
+				    		text1 += del;
+				    	}
+				    	
+				    	text1 += "</div>";
+					    
 					    text2 = "<div id='ex' class='totalCount'></div>";
 						text3 = "<div class='dt-wrapper'></div>";
 						text4 = "<div class='ev_content'></div>";
@@ -163,6 +178,7 @@
 					setView(datas.length);
 				   } 
 				};
+				
 				
 				$("#more1").click(function() {
 					

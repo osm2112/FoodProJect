@@ -170,7 +170,7 @@ public class evalDAO {
 		try {
 			conn = dataSource.getConnection();
 			
-			sql = "select eval_id, RPAD(substr(write_id, 1,3),8,'*') write_id,to_char(eval_date,'rrrr.MM.dd') eval_date, total, tasty, price, service, eval_content,"
+			sql = "select eval_id, write_id,to_char(eval_date,'rrrr.MM.dd') eval_date, total, tasty, price, service, eval_content,"
 					+ " filename1, filename2, filename3, eval_path"
 					+ " From eval where store_id = ? order by eval_id";
 			

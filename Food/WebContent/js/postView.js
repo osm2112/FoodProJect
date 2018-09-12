@@ -267,6 +267,7 @@ $(document).on("click","#rr-close",function(){
 $(document).on("click","#rrSubmit",function(){
 	
 	reply_id = $(this).prev().val();
+	console.log(reply_id);
 
 	formData = $("form[name=ReRe]").serialize();
 
@@ -278,16 +279,14 @@ $(document).on("click","#rrSubmit",function(){
 	});
 	
 	function callbackReReAdd(result) {
-
+		
+		var inx = $("#rrCentered[class*='"+reply_id +"']").length-1;
+		
+		console.log(inx);
 		var datas = JSON.parse(result);
 		console.log(datas);
 
 		var t,t1,t2,t3,t4,t5,t6,t7;
-
-		if(datas.length>0){
-			
-		$.each(datas,function(i,o){
-			
 			
 			t1 = "<div class='" + reply_id + "' id='rrCentered' style='background-color:#F5F5F5'></div>";
 			t2 = "<div class='" + reply_id + "' id='rr-wrapper'></div>";
@@ -297,18 +296,16 @@ $(document).on("click","#rrSubmit",function(){
 			t5 = "<div style='float:right;margin-top:15px;margin-right:10px'>"
 				+ "<img src='/Food/img/menu.png' style='width:25px;height:25px'></div>";
 			t6 = "<div id='write_id' style='padding:5px 0px'>"
-				+ o.write_id + "&nbsp;&nbsp;&nbsp;" + o.re_date + "</div>";
-			t7 = "<div style='padding:5px 0px'>" + o.re_content + "</div>";
+				+ datas.write_id + "&nbsp;&nbsp;&nbsp;" + datas.re_date + "</div>";
+			t7 = "<div style='padding:5px 0px'>" + datas.re_content + "</div>";
 		
 			
 			$("#rr"+reply_id).append(t1);
-			$("#rrCentered[class*='"+reply_id +"']").eq(i).append(t2);
-			$("#rr-wrapper[class*='"+reply_id +"']").eq(i).append(t,t3,t4,t5);
-			$("#rrList[class*='"+reply_id +"']").eq(i).append(t6,t7);
-		
-			});
-		}
-
+			$("#rrCentered[class*='"+reply_id +"']").eq(inx).append(t2);
+			$("#rr-wrapper[class*='"+reply_id +"']").eq(inx).append(t,t3,t4,t5);
+			$("#rrList[class*='"+reply_id +"']").eq(inx).append(t6,t7);
+			
+			$("form[name=ReRe] #r_content").val("");
 	}
 })
 $(document).on("click","#r_content",function() {
