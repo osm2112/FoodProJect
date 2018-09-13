@@ -34,15 +34,17 @@ table {
 	border-collapse: collapse;
 	margin-left: auto;
 	margin-right: auto;
+	width: 800px;
 }
 
 td {
-	padding: 5px 5px 5px 20px;
+	padding: 5px 5px 5px 5px;
 	border: 1px solid lightgrey;
 }
 
 .td1 {
-	width: 200px;
+	width: 170px;
+	text-align: center;
 }
 </style>
 </head>
@@ -59,11 +61,11 @@ td {
 		<form action="<%= request.getContextPath() %>/applyStore.sto" method="post" name="frm">
 		<table>
 			<tr>
-				<td>ID</td>
+				<td class="td1">ID</td>
 				<td><input type="hidden" name="id" value="${id}">${id}</td>
 			</tr>
 			<tr>
-				<td>이름</td>
+				<td class="td1">이름</td>
 				<td><input type="hidden" name="name" value="${name}">${name}</td>
 			</tr>
 			<tr>
@@ -75,7 +77,7 @@ td {
 				</td>
 			</tr>
 			<tr>
-				<td>카테고리</td>
+				<td class="td1">카테고리</td>
 				<td>
 					<div>
 						<select style="width: 130px" name="category">

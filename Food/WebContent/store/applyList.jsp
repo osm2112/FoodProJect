@@ -21,12 +21,9 @@
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
-	width: 1200px;
+	width: 1500px;
 }
 
-.textcenter {
-	text-align: center;
-}
 </style>
 
 	<script>
@@ -199,7 +196,7 @@
 			if (content == null) {
 		%>
 		<div class="centered">
-			<div class="textcenter">
+			<div style="text-align: center;">
 			<nav aria-label="pagination example">
 			<ul class="pagination pagination-lg">
 			<!--Arrow left-->

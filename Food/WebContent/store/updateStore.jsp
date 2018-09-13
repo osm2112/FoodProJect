@@ -15,10 +15,10 @@
 <script type="text/javascript" src="/Food/js/storeDetailImgCheck.js"></script>
 <link rel="stylesheet" href="/Food/css/storeImg.css">
 <link rel="stylesheet" href="/Food/css/bootstrap.css">
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>매장 정보 등록/수정</title>
 
+<!-- 썸네일 사진 올리는 함수 -->
 <script>
 
 	function file_open() {
@@ -27,6 +27,7 @@
 	}
 	
 </script>
+
 </head>
 <body>
 <%	
@@ -45,14 +46,14 @@
 		<br>
 		<input type="hidden" name="storeid" value="${dto.storeid}">
 		<input type="hidden" name="rsstoreid" value="${dto1.rsstoreid}">
-		<table cellpadding="0" cellspacing="0" border="1">
+		<table>
 			<tr>
-				<td style="height: 35px;">상호명</td>
-				<td><input type="text" name="storename" class="size" value="${dto.storename}"></td>
+				<td class="td1" style="height: 35px;">상호명</td>
+				<td style="width: 700px"><input type="text" name="storename" class="size" value="${dto.storename}"></td>
 			</tr>
 			<tr>
-				<td style="height: 35px;">카테고리</td>
-				<td>
+				<td class="td1" style="height: 35px;">카테고리</td>
+				<td style="width: 700px">
 					<select style="width: 130px" name="category" value="${dto.category}">
 							<option>한식</option>
 							<option>분식</option>
@@ -96,7 +97,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td style="height: 35px;">매장 번호</td>
+				<td class="td1" style="height: 35px;">매장 번호</td>
 				<td>
 					<div>
 						<select style="width: 100px" name="storetel1" value="${dto.storetel1}">
@@ -114,15 +115,15 @@
 				</td>
 			</tr>
 			<tr>
-				<td>메뉴</td>
-				<td>
-				<div><textarea cols="70" rows="7" name="menu">${dto1.menu}</textarea></div>
+				<td class="td1" >메뉴</td>
+				<td style="width: 700px">
+				<div><textarea cols="70" rows="7" name="menu" style="resize: none;">${dto1.menu}</textarea></div>
 				</td>
 			</tr>
 			<tr>
-				<td style="height: 35px;">미리보기 사진</td>
+				<td class="td1" style="height: 35px;">미리보기 사진</td>
 				<td>
-					<div class="form-control" style="height:35px">
+					<div class="form-control" style="height:43px">
 							<input type="text" name="thumbnailimg" class="ThumbnailImg" placeholder="매장 미리보기 사진을 올려주세요." />&nbsp;
 							<input type="button" style="background-color: white; border: 1px solid lightgrey; font-size: 15px;" value=" 파일첨부 "
 								onclick="file_open()">
@@ -130,8 +131,8 @@
 				</td>
 			</tr>
 			<tr>
-				<td>상세 사진</td>
-				<td>
+				<td class="td1" >상세 사진</td>
+				<td style="width: 700px">
 					<div style="padding:5px 5px 5px 5px;">
 					음식 또는 매장 등의 사진을 올려주세요.
 						<input type="button" id="photoButton" style="background-color: white; border: 1px solid lightgrey; font-size: 15px;" value=" 파일첨부 " onclick="file_open2()">
@@ -148,6 +149,8 @@
 																					class="btn btn-dark btn-sm">
 		</div>
 </div>
+
+
 </form>
 <jsp:include page="../footer.html"></jsp:include>
 </body>

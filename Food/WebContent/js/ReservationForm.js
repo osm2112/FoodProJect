@@ -10,14 +10,12 @@ function prevCalendar() {
 	} else {
 		today = new Date(today.getFullYear(), today.getMonth() - 1, 1);
 		buildCalendar();
-		$("div[id^=day]").css("cursor","default");
 	}
 }
 
 function nextCalendar() {
 	today = new Date(today.getFullYear(), today.getMonth() + 1, 1);
 	buildCalendar();
-	$("div[id^=day]").css("cursor","default");
 }
 
 function buildCalendar() {

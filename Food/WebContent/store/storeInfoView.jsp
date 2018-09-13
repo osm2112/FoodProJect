@@ -15,6 +15,10 @@
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.rawgit.com/theus/chart.css/v1.0.0/dist/chart.css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
 <link rel="stylesheet" href="/Food/css/bootstrap.css">
 <link rel="stylesheet" href="/Food/css/evalList.css">
 <link rel="stylesheet" href="/Food/css/blogList.css">
@@ -412,10 +416,9 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 										<td align="center">금</td>
 										<td align="center"><font color="blue">토</font></td>
 									</tr>
-								</table>
+								</table> 
 								<script>
 									buildCalendar();
-									$("div[id^=day]").css("cursor","default");
 								</script>
 							</td>
 							<td colspan="2"><div id="seatInfo"></div></td>
@@ -463,6 +466,5 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 			</div>
 		</div>
 	</div>
-	
 </body>
 </html>
