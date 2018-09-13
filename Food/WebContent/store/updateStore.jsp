@@ -14,6 +14,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="/Food/js/storeDetailImgCheck.js"></script>
 <link rel="stylesheet" href="/Food/css/storeImg.css">
+<link rel="stylesheet" href="/Food/css/bootstrap.css">
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>매장 정보 등록/수정</title>
 
