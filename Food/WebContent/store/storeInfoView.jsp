@@ -411,9 +411,10 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 										<td align="center">금</td>
 										<td align="center"><font color="blue">토</font></td>
 									</tr>
-								</table> 
+								</table>
 								<script>
 									buildCalendar();
+									$("div[id^=day]").css("cursor","default");
 								</script>
 							</td>
 							<td colspan="2"><div id="seatInfo"></div></td>
@@ -461,5 +462,6 @@ geocoder.addressSearch('${dto.storeaddr}', function(result, status) {
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>

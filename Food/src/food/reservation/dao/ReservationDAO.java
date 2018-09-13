@@ -42,8 +42,8 @@ public class ReservationDAO {
 	
 	public Connection getConnection() {
 		try {
-			String user = "hr";
-			String pw = "hr";
+			String user = "project";
+			String pw = "project";
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			conn = DriverManager.getConnection(url, user, pw);

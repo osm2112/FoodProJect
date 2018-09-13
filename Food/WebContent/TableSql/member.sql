@@ -193,119 +193,107 @@ exception
 end;
 
 
-create or replace procedure likeUpdate ( 
-        p_id 		varchar2,
-        p_writeId 	varchar2,
-        p_count   	out varchar2)
-is
-        v_like varchar2(20);
-        v_count number(2);
-        v_likeCount number(2);
+create or replace procedure likeUpdate ( p_id       varchar2,
+                                         p_writeId    varchar2,
+                                          p_count   out  varchar2)is
+v_like varchar2(20);
+v_count number(2);
+v_likeCount number(2);
 BEGIN
-        SELECT count(*) INTO  v_count 
-          FROM likeCommend
-         WHERE write_id = p_writeId;
-         
-        IF v_count = 0 THEN
-            INSERT INTO likeCommend (post_id, write_id,like_check)
-            VALUES(p_id, p_writeId,'Y');
-          
-            UPDATE post 
-               SET post_like = post_like + 1
-             WHERE post_id = p_id;
-        ELSE 
-            SELECT like_check 
-              INTO v_like
-              FROM likeCommend
-             WHERE write_id = p_writeId;
-           
-            IF v_like = 'Y' THEN
-              UPDATE likeCommend
-                 SET like_check = null
-               WHERE write_id = p_writeId;
-           
-              UPDATE post 
-                 SET post_like = post_like - 1
-               WHERE post_id = p_id;
-            ELSE
-              UPDATE likeCommend
-                 SET like_check = 'Y'
-               WHERE write_id = p_writeId;
-           
-              UPDATE post 
-                 SET post_like = post_like + 1
-               WHERE post_id = p_id;
-            END IF;
-        END IF;
-        SELECT post_like INTO v_likeCount
-          FROM post
-         WHERE post_id = p_id;
+  SELECT count(*) INTO  v_count 
+  FROM likeCommend
+  WHERE write_id = p_writeId and post_id = p_id;
+  IF v_count = 0 THEN
+   INSERT INTO likeCommend
+   (post_id, write_id,like_check)
+   VALUES(p_id, p_writeId,'Y');
+   UPDATE post 
+   SET post_like = post_like + 1
+   WHERE post_id = p_id;
+  ELSE 
+    SELECT like_check INTO v_like
+    FROM likeCommend
+    WHERE write_id = p_writeId and post_id = p_id;
+    IF v_like = 'Y' THEN
+      UPDATE likeCommend
+      SET like_check = null
+      WHERE write_id = p_writeId and post_id = p_id;
+      UPDATE post 
+     SET post_like = post_like - 1
+     WHERE post_id = p_id;
+    ELSE
+       UPDATE likeCommend
+       SET like_check = 'Y'
+       WHERE write_id = p_writeId and post_id = p_id;
+       UPDATE post 
+       SET post_like = post_like + 1
+       WHERE post_id = p_id;
+     END IF;
+   END IF;
    
-        IF v_likeCount < 0 THEN
-            update post
-               set post_like = 0
-             where post_id = p_id;  
-            v_likeCount := 0;
-        END IF;
-        p_count := v_likeCount;
+   SELECT post_like INTO v_likeCount
+   FROM post
+   WHERE post_id = p_id;
+   
+   IF v_likeCount < 0 THEN
+     update post
+     set post_like = 0
+     where post_id = p_id;
+     
+     v_likeCount := 0;
+     
+   END IF;
+   p_count := v_likeCount;
 END;
 
-create or replace procedure commendUpdate ( 
-        p_id 		varchar2,
-        p_writeId 	varchar2,
-        p_count   	out varchar2
-)
-is
-        v_commend varchar2(20);
-        v_count number(2);
-        v_commendCount number(2);
+create or replace procedure commendUpdate ( p_id       varchar2,
+                                            p_writeId    varchar2,
+                                            p_count      out varchar2)is
+v_commend varchar2(20);
+v_count number(2);
+v_commendCount number(2);
 BEGIN
-        SELECT count(*) INTO  v_count 
-          FROM likeCommend
-         WHERE write_id = p_writeId;
-        
-        IF v_count = 0 THEN
-          INSERT INTO likeCommend (post_id, write_id,commend_check)
-          VALUES(p_id, p_writeId,'Y');
-	
-          UPDATE post 
-             SET post_commend = post_commend + 1
-           WHERE post_id = p_id;
-        ELSE 
-          SELECT commend_check INTO v_commend
-            FROM likeCommend
-           WHERE write_id = p_writeId;
-          
-          IF v_commend = 'Y' THEN
-            UPDATE likeCommend
-               SET commend_check = null
-             WHERE write_id = p_writeId;
-      
-            UPDATE post 
-               SET post_commend = post_commend - 1
-             WHERE post_id = p_id;
-          ELSE
-            UPDATE likeCommend
-               SET commend_check = 'Y'
-             WHERE write_id = p_writeId;
-       
-            UPDATE post 
-               SET post_commend = post_commend + 1
-             WHERE post_id = p_id;
-          END IF; 
-        END IF;
-        
-        SELECT post_commend INTO v_commendCount
-          FROM post
-         WHERE post_id = p_id;
+  SELECT count(*) INTO  v_count 
+  FROM likeCommend
+  WHERE write_id = p_writeId and post_id = p_id;
+  IF v_count = 0 THEN
+   INSERT INTO likeCommend
+   (post_id, write_id,commend_check)
+   VALUES(p_id, p_writeId,'Y');
+   UPDATE post 
+   SET post_commend = post_commend + 1
+   WHERE post_id = p_id;
+  ELSE 
+    SELECT commend_check INTO v_commend
+    FROM likeCommend
+    WHERE write_id = p_writeId and post_id = p_id;
+    IF v_commend = 'Y' THEN
+      UPDATE likeCommend
+      SET commend_check = null
+      WHERE write_id = p_writeId and post_id = p_id;
+      UPDATE post 
+     SET post_commend = post_commend - 1
+     WHERE post_id = p_id;
+    ELSE
+       UPDATE likeCommend
+       SET commend_check = 'Y'
+       WHERE write_id = p_writeId and post_id = p_id;
+       UPDATE post 
+       SET post_commend = post_commend + 1
+       WHERE post_id = p_id;
+     END IF; 
+   END IF;
+   SELECT post_commend INTO v_commendCount
+   FROM post
+   WHERE post_id = p_id;
    
-        IF v_commendCount < 0 THEN
-          update post
-             set post_commend = 0
-           where post_id = p_id;
-          v_commendCount := 0;
-        END IF;
-        p_count := v_commendCount;
+   IF v_commendCount < 0 THEN
+     update post
+     set post_commend = 0
+     where post_id = p_id;
+     v_commendCount := 0;
+   END IF;
+   p_count := v_commendCount;
 END;
 
 create or replace procedure evalCount (	
