@@ -42,8 +42,6 @@ public class replyDAO {
 	
 	public void replyInput(replyDTO dto){
 		
-		String reply_id = null;
-		
 		try {
 			conn = dataSource.getConnection();
 			
@@ -59,10 +57,10 @@ public class replyDAO {
 			rn = pstmt.executeUpdate();
 			
 			if(rn>0) {
-				System.out.println("reply insert 성공");
+				System.out.println("reply insert 占쎄쉐�⑨옙");
 				/*check = "reInput";*/
 			}else {
-				System.out.println("reply insert 실패");
+				System.out.println("reply insert 占쎈뼄占쎈솭");
 			}
 			
 			
@@ -100,10 +98,10 @@ public class replyDAO {
 			rn = pstmt.executeUpdate();
 			
 			if(rn>0) {
-				System.out.println("rr insert 성공 ");
+				System.out.println("rr insert 占쎄쉐�⑨옙 ");
 				
 			}else {
-				System.out.println("rr insert 실패");
+				System.out.println("rr insert 占쎈뼄占쎈솭");
 			}
 			
 			
@@ -153,6 +151,7 @@ public class replyDAO {
 					dto.setRe_content(rs.getString("re_content"));
 					dto.setRe_level(rs.getInt("re_level"));
 					dto.setPost_id(post_id);
+					dto.setRe_count(rrCount(dto.getReply_id()));
 					
 					list.add(dto);
 				}
@@ -175,6 +174,46 @@ public class replyDAO {
 		}
 		
 		return list;
+	}
+	
+	public int rrCount(String reply_id) {
+		
+		int count = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+			
+			sql = "select count(*) cnt from reply where top_levelId = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, reply_id);
+			
+			if(rs != null) {
+				if(rs.next()) {
+				
+					count = rs.getInt("cnt");
+				}
+			}
+			
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}
+		
+		return count;
 	}
 public List<replyDTO> rrList(String reply_id){
 		

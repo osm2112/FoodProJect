@@ -7,7 +7,9 @@
 	ReservationDAO dao = new ReservationDAO();
 	ReservationDTO dto = new ReservationDTO();
 	String storeId = request.getParameter("storeId");
+	System.out.println("시발 왜애러나는거야 병신아 왜 니가 21이나옴"+storeId);
 	String reserveDate = request.getParameter("reserveDate");
+	System.out.println(reserveDate);
 	List<ReservationDTO> list = dao.SelectCheckSeat(storeId, reserveDate); 
 if(list.size() ==0){ 
 %>

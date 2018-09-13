@@ -12,7 +12,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import food.store.ex.storeDTO;
 
 public class evalDAO {
 		
@@ -229,5 +228,50 @@ public class evalDAO {
 		
 		return list;
 	}
+public String evalDelete(String evalId) {
+		
+		String check = null;
+			
+		try {
+			
+			conn = dataSource.getConnection();
+			
+			sql = "delete from eval where eval_id = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, evalId);
+			
+			rn = pstmt.executeUpdate();
+			
+			if(rn>0) {
+				System.out.println("?됯? 湲 ??젣 ?꾨즺 ");
+				check = "del";
+			}
+			else {
+				System.out.println("?됯? 湲 ??젣 ?ㅽ뙣");
+			}
+			
+			
+			
+		} catch (SQLException e) {
 
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}
+		return check;
+		
+	}
+	
 }
+
+

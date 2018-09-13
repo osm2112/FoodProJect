@@ -77,7 +77,7 @@
 				<tr>
 					<td>${dto.count}</td>
 					<td>${dto.storeid}</td>
-					<td>${dto.storename}</td>
+					<td><a href='./ReservationCalendar.re?storeId=${dto.storeid}'>${dto.storename}</a></td>
 					<% No = No - 1; %>
 				</tr>
 				</tbody>

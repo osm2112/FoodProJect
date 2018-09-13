@@ -138,13 +138,13 @@ public class ReservationController extends HttpServlet {
 			viewPage = "ReservationList.re?page=" + page;
 			response.sendRedirect(viewPage);
 
-		}  else if (com.equals("/ReservatonStoreList.re")) {
-
+		} else if (com.equals("/ReservatonStoreList.re")) {
 			command = new ReservationStoreLIstCommand();
 			command.execute(request, response);
-			viewPage = "ReservatonStoreListForm.re"; 
+			viewPage = "ReservatonStoreListForm.re";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);
-		}	
+
+		}
 	}
 }

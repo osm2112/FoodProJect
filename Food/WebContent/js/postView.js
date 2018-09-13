@@ -74,39 +74,47 @@ $(function() {
 
 		var datas = JSON.parse(result);
 		console.log(datas);
-
+		
+		var t1,t2,t3,t4,t5,t6,t7,t8,count;
 		if (datas.length > 0) {
-
+			
+			$("#replyCount").text(datas.length);
 			$.each(datas,function(i, o) {
 
-								var text1 = "<div class='ReplyCentered2'></div>";
-								var text2 = "<div class='reply-wrapper'></div>";
+								t1 = "<div class='ReplyCentered2'></div>";
+								t2 = "<div class='reply-wrapper'></div>";
 								var rr = "<div id='rrList-wrapper' style='display:none'></div>";
 
-								$("#rs-wrapper").append(text1, rr);
-								$(".ReplyCentered2").eq(i).append(text2);
+								$("#rs-wrapper").append(t1, rr);
+								$(".ReplyCentered2").eq(i).append(t2);
 
-								var text3 = "<div id='user'><img src='/Food/img/user-g.png' style='width:40px;height:40px;'></div>";
-								var text4 = "<div class='replyList'></div>";
-								var text8 = "<div style='float:right;margin-top:15px;margin-right:10px'><img src='/Food/img/menu2.png' style='width:20px;height:20px'></div>"
+								t3 = "<div id='user'><img src='/Food/img/user-g.png' style='width:40px;height:40px;'></div>";
+								t4 = "<div class='replyList'></div>";
+								t8 = "<div style='float:right;margin-top:15px;margin-right:10px'><img src='/Food/img/menu2.png' style='width:20px;height:20px'></div>"
 
-								$(".reply-wrapper").eq(i).append(text3, text4,
-										text8);
+								$(".reply-wrapper").eq(i).append(t3, t4,
+										t8);
 
-								var text5 = "<div id='write_id' style='padding:5px 0px'>"
+								t5 = "<div id='write_id' style='padding:5px 0px'>"
 										+ o.write_id
 										+ "&nbsp;&nbsp;&nbsp;"
 										+ o.re_date + "</div>";
-								var text6 = "<div style='padding:5px 0px'>"
+								t6 = "<div style='padding:5px 0px'>"
 										+ o.re_content + "</div>";
-								var text7 = "<div style='padding:5px 0px'>"
+								
+								if(o.re_count == 0){
+									count = "";
+								}
+								else {
+									count = o.re_count;
+								}
+								t7 = "<div style='padding:5px 0px'>"
 										+ " <input type='hidden' name='reply_id' value='"
 										+ o.reply_id
 										+ "'>"
-										+ "<button id='rrButton'>답글 </button></div>";
+										+ "<button id='rrButton'>답글 <span id='cnt" + o.reply_id + "'>"+ count + "</span></button></div>";
 
-								$(".replyList").eq(i).append(text5, text6,
-										text7);
+								$(".replyList").eq(i).append(t5, t6,t7);
 
 							});
 
@@ -125,11 +133,14 @@ $(function() {
 	});
 
 	function callbackAdd(result) {
-
+		
+		
 		var datas = JSON.parse(result);
 
 		console.log(datas);
-
+		var count = parseInt($("#replyCount").html());
+		$("#replyCount").text(count+1);
+		
 		var text1 = "<div class='ReplyCentered2'></div>";
 		var text2 = "<div class='reply-wrapper'></div>";
 		var rr = "<div id='rrList-wrapper' style='display:none'></div>";
@@ -148,18 +159,23 @@ $(function() {
 				+ "</div>";
 		var text6 = "<div style='padding:5px 0px'>" + datas.re_content
 				+ "</div>";
+		
+		if(o.re_count == 0){
+			count = "";
+		}
+		else {
+			count = o.re_count;
+		}
 		var text7 = "<div style='padding:5px 0px'>"
 				+ " <input type='hidden' name='reply_id' value='"
 				+ datas.reply_id + "'>"
-				+ "<button id='rrButton'>답글 </button></div>";
+				+ "<button id='rrButton'>답글 <span id='cnt" + o.reply_id + "'>"+ count + "</span></button></div>";
 
 		$(".replyList").eq(0).append(text5, text6, text7);
 
 		$("form[name=Reply] #r_content").val("");
 
-	}
-	
-	
+		}
 
 
 });

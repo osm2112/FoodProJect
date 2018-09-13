@@ -20,36 +20,30 @@
 		});
 
 		$(".fc-prev-button").on("click", function() {
-			//alert("prev!!!");
 			getViewDate();
 		});
 		$(".fc-next-button").on("click", function() {
-			//alert("next!!!");
 			getViewDate();
 		});
 		$(".fc-today-button").on("click", function() {
-			//alert("today!!!");
 			getViewDate();
 		});
  		$(".fc-month-button").on("click", function() {
-			//alert("today!!!");
 			getViewDate();
 		});
 		$(".fc-agendaWeek-button").on("click", function() {
-			//alert("today!!!");
 			getViewDate();
 		});
 		$(".fc-agendaDay-button ").on("click", function() {
-			//alert("today!!!");
 			getViewDate();
 		});
 		$(".fc-listWeek-button").on("click", function() {
-			//alert("today!!!");
 			getViewDate();
 		});
 		
  		function calEvent(dayObj) {
-			url = "ReservationCalendarProc.re";
+ 			var storeId = document.getElementById("storeId").value;
+			url = "ReservationCalendarProc.re?storeId="+storeId;
 			$.ajax({
 				dataType : "json",
 				data : dayObj,
@@ -85,7 +79,8 @@
 				endDate : end
 			};
 			$('#calendar').fullCalendar('removeEvents');
-			calEvent(monthObj, start, end);
+			calEvent(monthObj);
 		}
 		getViewDate();
 	}); 
+	

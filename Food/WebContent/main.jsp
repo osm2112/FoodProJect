@@ -296,9 +296,9 @@
 								<%
 									if (("owner").equals(user_state)) {
 								%>
-								<li id="active"><a href="#" 
-									onClick="document.location.href='<%=request.getContextPath()%>/manageStore.sto?id=<%=id%>';">매장
-										관리 </a></li>
+								<li id="active"><a href="#"	onClick="document.location.href='<%=request.getContextPath()%>/manageStore.sto?id=<%=id%>';">매장 관리 </a></li>
+								<li id="active"><a href="#" onClick="location.href='./ReservatonStoreList.re'">매장별 예약 현황 확인 </a></li>
+										
 								<%
 									} else {
 								%>
