@@ -18,6 +18,10 @@ public class storeDTO {
 	String thumbnailimg;
 	String tn_img_path;
 	
+	String like_count;
+	String eval_count;
+	
+	
 	public storeDTO() {
 
 	}

@@ -15,6 +15,7 @@
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.rawgit.com/theus/chart.css/v1.0.0/dist/chart.css" />
+<link rel="stylesheet" href="/Food/css/bootstrap.css">
 <link rel="stylesheet" href="/Food/css/evalList.css">
 <link rel="stylesheet" href="/Food/css/blogList.css">
 <link rel="stylesheet" href="/Food/css/storeImgSlide.css">
