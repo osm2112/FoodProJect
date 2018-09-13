@@ -14,7 +14,7 @@
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
-	width: 1000px;
+	width: 800px;
 }
 .size {
 	height: 20px;
@@ -27,7 +27,7 @@
 <div class="size"></div>
 	<h3>예약 내용 확인 </h3>
 	<div class="size"></div>
-	<table class="table">
+	<table class="table" style="border-bottom:1px solid lightgrey">
 		<tr>
 			<td>예약자번호</td>
 			<td>${param.reservationId }</td>
