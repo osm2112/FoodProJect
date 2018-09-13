@@ -2,18 +2,21 @@ package food.reservation.controller;
 
 import java.io.IOException;
 import java.net.URLEncoder;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 //import javax.servlet.http.HttpSession;
 import food.reservation.command.ReservationCommand;
 import food.reservation.command.ReservationDeleteCommand;
 import food.reservation.command.ReservationDetailCommand;
 import food.reservation.command.ReservationInsertCommand;
 import food.reservation.command.ReservationListCommand;
+import food.reservation.command.ReservationStoreLIstCommand;
 import food.reservation.dto.ReservationDTO;
 
 @WebServlet("*.re")
@@ -137,9 +140,13 @@ public class ReservationController extends HttpServlet {
 			viewPage = "ReservationList.re?page=" + page;
 			response.sendRedirect(viewPage);
 
-		} else if(com.equals("/ReservationStoreListCommand.re")) {
-			
-		}
+		} else if (com.equals("/ReservatonStoreList.re")) {
+			command = new ReservationStoreLIstCommand();
+			command.execute(request, response);
+			viewPage = "ReservatonStoreListForm.re";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			dispatcher.forward(request, response);
+ 		}
 		
 	}
 }
