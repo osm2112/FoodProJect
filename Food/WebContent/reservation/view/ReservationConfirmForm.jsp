@@ -9,13 +9,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>예약 내용 확인</title>
 </head>
+<style>
+.centered {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+	width: 1000px;
+}
+.size {
+	height: 20px;
+}
+</style>
 <body>
 <jsp:include page="../../header.jsp"></jsp:include>
-<div style="text-align:center;">
+<div class="size"></div>
+<div class="centered">
+<div class="size"></div>
 	<h3>예약 내용 확인 </h3>
-</div>
-<hr>
-	<table border="1">
+	<div class="size"></div>
+	<table class="table">
 		<tr>
 			<td>예약자번호</td>
 			<td>${param.reservationId }</td>
@@ -57,10 +69,11 @@
 			<td>${param.reserveComment }</td>
 		</tr>				
 	</table>
+	</div>
 	<hr>
 	<div style="text-align: center;">
 		<h5>상기 내용으로 예약 되었습니다.</h5>
-		<input type="button" value="확인">
+		<input type="button" class="btn btn-secondary" style="padding-top:5px" value="확인" />
 	</div>
 </body>
 </html>
