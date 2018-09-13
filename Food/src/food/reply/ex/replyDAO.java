@@ -22,11 +22,13 @@ public class replyDAO {
 	}
 
 	String sql = null;
-
+	
 	Connection conn = null;
+	Connection conn2 = null;
 	PreparedStatement pstmt = null;
 	PreparedStatement pstmt2 = null;
 	ResultSet rs = null;
+	ResultSet rs2 = null;
 	int rn = 0;
 	DataSource dataSource;
 
@@ -151,7 +153,8 @@ public class replyDAO {
 					dto.setRe_content(rs.getString("re_content"));
 					dto.setRe_level(rs.getInt("re_level"));
 					dto.setPost_id(post_id);
-					dto.setRe_count(rrCount(dto.getReply_id()));
+					int count = rrCount(dto.getReply_id(),conn);
+					dto.setRe_count(count);
 					
 					list.add(dto);
 				}
@@ -176,23 +179,24 @@ public class replyDAO {
 		return list;
 	}
 	
-	public int rrCount(String reply_id) {
+	public int rrCount(String reply_id,Connection conn) {
 		
 		int count = 0;
 		
 		try {
-			conn = dataSource.getConnection();
 			
 			sql = "select count(*) cnt from reply where top_levelId = ?";
 			
-			pstmt = conn.prepareStatement(sql);
+			pstmt2 = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, reply_id);
+			pstmt2.setString(1, reply_id);
 			
-			if(rs != null) {
-				if(rs.next()) {
+			rs2 = pstmt2.executeQuery();
+			
+			if(rs2 != null) {
+				if(rs2.next()) {
 				
-					count = rs.getInt("cnt");
+					count = rs2.getInt("cnt");
 				}
 			}
 			
@@ -201,12 +205,10 @@ public class replyDAO {
 			e.printStackTrace();
 		}finally {
 			try {
-				if(rs != null)
-					rs.close();
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
+				if(rs2 != null)
+					rs2.close();
+				if (pstmt2 != null)
+					pstmt2.close();
 			} catch (Exception e2) {
 
 				e2.printStackTrace();

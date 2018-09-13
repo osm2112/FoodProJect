@@ -75,7 +75,7 @@ ul, li {
 		<a href="<%=request.getContextPath()%>/main.mb" class="th">TASTY
 			HOUSE</a>
 		<ul class="menus">
-			<li onclick=goList()>LIST</li>
+			<li onclick=goList()>최신순</li>
 			<li onclick=goLikeList()>좋아요순</li>
 			<li onclick=goCommendList()>추천순</li>
 			<li onclick=goPage()>WRITE</li>
