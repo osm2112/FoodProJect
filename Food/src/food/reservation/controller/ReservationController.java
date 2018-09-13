@@ -145,7 +145,7 @@ public class ReservationController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "ReservatonStoreListForm.re";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-			dispatcher.forward(request, response);
+			dispatcher.forward(request, response);    
  		}
 		
 	}
