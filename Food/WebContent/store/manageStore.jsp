@@ -174,7 +174,7 @@ $("input").click(function(){
 			</nav>
 		</div>	
 		</div>
-		<%
+		<%   
 			}
 		%>
 	</div>
