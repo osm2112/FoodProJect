@@ -63,12 +63,12 @@ public class postDAO {
 			int rn = pstmt.executeUpdate();
 
 			if (rn > 0) {
-				System.out.println("post insert 성공");
+				System.out.println("post insert �꽦怨�");
 				check = "input";
 			}
 
 			else
-				System.out.println("post insert 실패");
+				System.out.println("post insert �떎�뙣");
 
 		} catch (SQLException e) {
 
@@ -153,7 +153,8 @@ public class postDAO {
 		return list;
 
 	}
-
+	
+	//하나의 포스트 view를 보여주기 위한 함수 
 	public postDTO viewPost(String id) {
 
 		postDTO dto = null;
@@ -210,8 +211,9 @@ public class postDAO {
 		return dto;
 
 	}
-
-	public List<postDTO> mypostList(String id) {
+	
+	//나의 포스트 리스트 가져오기
+	public List<postDTO> mypostList(String id,String pageNum) {
 
 		postDTO dto = null;
 
@@ -221,10 +223,35 @@ public class postDAO {
 
 		try {
 			conn = dataSource.getConnection();
+			
+			int page;
 
-			sql = "select post_id,write_id, substr(write_name, 1,1)||'*'||substr(write_name, 3,1) write_name,"
-					+ " to_char(post_date,'rrrr-MM-dd HH24:mm:ss') post_date,"
-					+ "post_title, post_sub, post_content, post_like,post_commend,main_img,img_path from post where write_id = ?";
+			if (pageNum == null) {
+				page = 1;
+			} else {
+				page = Integer.parseInt(pageNum);
+			} 
+
+			int countPage = 5;
+
+			int query_startPage = (page - 1) * countPage + 1; 
+			int query_endPage = page * countPage; 
+			
+			String sql = "select * from ("
+
+				+ "select rownum as rnum, A.post_id, A.write_id,A.post_date,A.post_title,A.post_content"
+				
+				+ " from ("
+
+				+ "select post_id,write_id,to_char(post_date,'rrrr-MM-dd') post_date,"
+				
+				+ "post_title, post_content from post where write_id = ?"
+				
+				+ " order by post_id desc) A"
+
+				+ " where rownum <= " + query_endPage + ") X"
+
+				+ " where X.rnum >= " + query_startPage + "";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -237,14 +264,9 @@ public class postDAO {
 
 				dto.setPost_id(rs.getString("post_id"));
 				dto.setWrite_id(rs.getString("write_id"));
-				dto.setWrite_name(rs.getString("write_name"));
 				dto.setPost_date(rs.getString("post_date"));
 				dto.setPost_title(rs.getString("post_title"));
-				dto.setPost_sub(rs.getString("post_sub"));
 				dto.setPost_content(rs.getString("post_content"));
-				dto.setPost_like(rs.getInt("post_like"));
-				dto.setMain_img(rs.getString("main_img"));
-				dto.setImg_path(rs.getString("img_path") + rs.getString("main_img"));
 
 				list.add(dto);
 
@@ -267,6 +289,45 @@ public class postDAO {
 
 		return list;
 
+	}
+	
+	//나의 포스트 총 개수 가져오기
+	public String CountList(String id) {
+
+		String count = null;
+
+		String sql = "select count(*) as count from post where write_id = ?";
+
+		try {
+
+			conn = dataSource.getConnection();
+
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,id);
+			
+			ResultSet rs = pstmt.executeQuery();
+
+			rs.next();
+			
+			count=rs.getString("count");
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+
+
+
+		return count;
 	}
 
 	public String updatePost(postDTO dto) {
@@ -292,13 +353,13 @@ public class postDAO {
 			rn  = cstmt.getInt(7);
 			
 			if(rn>0) {
-				System.out.println("post update 성공");
+				System.out.println("post update �꽦怨�");
 				check = "update";
 			}
 				
 
 			
-			System.out.println("Update try 안의 check : " + check);
+			System.out.println("Update try �븞�쓽 check : " + check);
 
 		} catch (SQLException e) {
 
@@ -339,7 +400,7 @@ public class postDAO {
 				}
 				else {
 					
-					System.out.println("post delete 실패");
+					System.out.println("post delete �떎�뙣");
 					
 				}
 				
@@ -361,7 +422,7 @@ public class postDAO {
 				}
 				else {
 					
-					System.out.println("post delete 실패");
+					System.out.println("post delete �떎�뙣");
 					
 				}
 			} catch (SQLException e) {

@@ -32,8 +32,7 @@ $(function() {
 
 						if (lc == "like") {
 							$.ajax({
-										url : "postLike.po?post_id=${dto.post_id}&write_id="
-												+ id,
+										url : "postLike.po?post_id="+post_id +"&write_id=" + id,
 										success : function(result) {
 											var datas = JSON.parse(result);
 											console.log(datas);
@@ -42,8 +41,7 @@ $(function() {
 									})
 						} else {
 							$.ajax({
-										url : "postCommend.po?post_id=${dto.post_id}&write_id="
-												+ id,
+										url : "postCommend.po?post_id="+post_id +"&write_id=" + id,
 										success : function(result) {
 											var datas = JSON.parse(result);
 											console.log(datas);
@@ -160,16 +158,10 @@ $(function() {
 		var text6 = "<div style='padding:5px 0px'>" + datas.re_content
 				+ "</div>";
 		
-		if(o.re_count == 0){
-			count = "";
-		}
-		else {
-			count = o.re_count;
-		}
 		var text7 = "<div style='padding:5px 0px'>"
 				+ " <input type='hidden' name='reply_id' value='"
 				+ datas.reply_id + "'>"
-				+ "<button id='rrButton'>답글 <span id='cnt" + o.reply_id + "'>"+ count + "</span></button></div>";
+				+ "<button id='rrButton'>답글 <span id='cnt" + datas.reply_id + "'></span></button></div>";
 
 		$(".replyList").eq(0).append(text5, text6, text7);
 
@@ -297,11 +289,23 @@ $(document).on("click","#rrSubmit",function(){
 	function callbackReReAdd(result) {
 		
 		var inx = $("#rrCentered[class*='"+reply_id +"']").length-1;
+		var count ;
 		
 		console.log(inx);
 		var datas = JSON.parse(result);
 		console.log(datas);
-
+		
+		if(datas != ""){
+		
+		if($("#cnt"+reply_id).html() == ""){
+			count = 1;
+		}
+		else {
+			count = parseInt($("#cnt"+reply_id).html())+1 ;
+		}
+			
+		$("#cnt"+reply_id).text(count);
+		
 		var t,t1,t2,t3,t4,t5,t6,t7;
 			
 			t1 = "<div class='" + reply_id + "' id='rrCentered' style='background-color:#F5F5F5'></div>";
@@ -322,6 +326,7 @@ $(document).on("click","#rrSubmit",function(){
 			$("#rrList[class*='"+reply_id +"']").eq(inx).append(t6,t7);
 			
 			$("form[name=ReRe] #r_content").val("");
+		}
 	}
 })
 $(document).on("click","#r_content",function() {

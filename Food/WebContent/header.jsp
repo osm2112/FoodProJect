@@ -12,7 +12,7 @@
 	font-weight: 800;
 	height: 80px;
 	text-align: center;
-	padding: 15px 0px 0px 0px;
+	padding: 10px 0px 0px 0px;
 	text-shadow: 1px 1px grey;
 	
 }

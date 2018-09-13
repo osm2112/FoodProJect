@@ -14,11 +14,15 @@ public class mypostListCommand implements postCommand{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		String id = (String)request.getParameter("write_id");
+		String pageNum = (String)request.getParameter("pageNum");
+		
 		postDAO dao = postDAO.getInstance();
 		
-		List<postDTO> list = dao.mypostList(id);
+		List<postDTO> list = dao.mypostList(id,pageNum);
+		String totalCount = dao.CountList(id);
 		
 		request.setAttribute("list", list);
+		request.setAttribute("totalCount", totalCount);
 		
 	}
 
